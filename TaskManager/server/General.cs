@@ -5,6 +5,7 @@ using System.Web;
 using DataLair;
 using DataLair.DataModel;
 using System.Text.RegularExpressions;
+using server.BusinessLayer;
 
 namespace server
 {
@@ -20,11 +21,12 @@ namespace server
           
                 if (users != null && users.Count > 0&& CheckPass(password)&& CheckEmailAddress(email))
                 {
+                var user = users.FirstOrDefault();
+               // return new Result(1, "Login succesfull!");
 
-                    return new Result(1, "Login succesfull!");
-                }
+            }
          
-            return new Result(-1, "User not found!");
+           // return new Result(-1, "User not found!");
             
         }
 
@@ -53,16 +55,16 @@ namespace server
             }
             return new Result(-1, "Email is wrong!");
         }
-        public int ActualTasks(int userID)
+        public Result ActualTasks(int userID)
         {
             var users = context.Users.Where(u => u.UserID == userID).ToList();
             
             if(users!=null&& users.Count == 1)
             {
                 var tasks = users.FirstOrDefault().Tasks;
-                return tasks;
+                return new Result(1, tasks);
             }
-            return 0;
+            return  new Result(-1, "Email is wrong!");
 
         }
         public bool CheckPass(string pass)

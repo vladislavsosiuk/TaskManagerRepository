@@ -102,6 +102,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLayer\BusinessUser.cs" />
     <Compile Include="General.cs" />
     <Compile Include="IGeneral.cs" />
     <Compile Include="Result.cs" />
@@ -113,7 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="BusinessLayer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
