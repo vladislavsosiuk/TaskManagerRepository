@@ -14,5 +14,6 @@ namespace DataLair
         public string Email { get; set; }
         public IPEndPoint EndPoint { get; set; }
         public string Password { get; set; }
+
     }
 }
