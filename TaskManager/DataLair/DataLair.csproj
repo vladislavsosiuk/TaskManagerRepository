@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModel\InitDataBase.cs" />
     <Compile Include="DataModel\ModelContext.cs" />
     <Compile Include="DataModel\Project.cs" />
     <Compile Include="DataModel\MyTask.cs" />
