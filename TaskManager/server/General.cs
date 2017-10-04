@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DataLair.DataModel;
+using server.BusinessLayer;
+using System;
 using System.Linq;
-using System.Web;
 
 namespace server
 {
@@ -10,28 +10,36 @@ namespace server
         public ModelContext context;
        
 
-        public Result Login(string email, string password)
+        public BusinessUser Login(string email, string password)
         {
+            throw new NotImplementedException();
 
-            var users = context.Users.Where(u => u.Email && u.Password).ToList();
-            if (users!=null&&users.Count>0)
-            {
-
-                return new Result(1,"Login succesfull!");
-            }
-            return new Result(-1, "User not found!");
+            //var users = context.Users.Where(u => u.Email && u.Password).ToList();
+            //if (users!=null&&users.Count>0)
+            //{
+            //    var user = users.FirstOrDefault();
+            //    return new BusinessUser { Name = user.Name };
+            //}
+            //return new BusinessUser { Result = new Result { Code = -1, Message = "user not found" } };
             
         }
 
-        public Result SignUp(string email, string password, string name)
+        public BusinessUser SignUp(string email, string password, string name)
         {
-            var user = new User() { Name = name, email = email, Password = password };
-            context.Users.Add(user);
-            context.SaveChanges();
+            throw new NotImplementedException();
+            //var user = new User() { Name = name, email = email, Password = password };
+            //context.Users.Add(user);
+            //context.SaveChanges();
 
         
         }
-       public General()
+        public Result RemindPassword(string userName)
+        {
+            throw new NotImplementedException();
+        }
+        
+
+        public General()
         {
             context = new ModelContext();
         }
