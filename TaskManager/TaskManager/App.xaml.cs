@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DataLair;
+using server;
+using server.BusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +16,7 @@ namespace TaskManager
     /// </summary>
     public partial class App : Application
     {
+        public static General GeneralService { get; set; } = new General();
+        public static BusinessUser CurrentUser { get; set; }
     }
 }
