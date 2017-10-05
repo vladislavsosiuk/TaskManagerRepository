@@ -22,10 +22,9 @@ namespace server
             if (users != null && users.Count > 0 && CheckPass(password) && CheckEmailAddress(email))
             {
                 var user = users.FirstOrDefault();
-                return new BusinessUser();
+                return new BusinessUser { Name = user.Name };
             }
-            //return new BusinessUser { Result = new Result { -1, "user not found!" }};
-            return new BusinessUser();
+            return new BusinessUser { Result = new Result ( -1, "user not found!" )};
         }
 
         public BusinessUser SignUp(string email, string password, string name)
@@ -35,9 +34,9 @@ namespace server
             {
                 context.Users.Add(user);
                 context.SaveChanges();
-                return new BusinessUser();
+                return new BusinessUser { Name = user.Name, Password = user.Password, Email = user.Email };
             }
-            return new BusinessUser();
+            return new BusinessUser { Result = new Result(-1, "Registration is not succefull, something wrong with data") };
 
 
         }
@@ -102,10 +101,10 @@ namespace server
             throw new NotImplementedException();
         }
 
-        Result IGeneral.ActualTasks(int userID)
-        {
-            throw new NotImplementedException();
-        }
+        //Result IGeneral.ActualTasks(int userID)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public General()
         {
