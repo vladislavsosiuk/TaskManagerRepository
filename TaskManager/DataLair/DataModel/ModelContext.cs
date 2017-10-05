@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLair.DataModel
+namespace DataLair
 {
     public class ModelContext : DbContext
     {
