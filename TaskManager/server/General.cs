@@ -12,22 +12,21 @@ namespace server
     public class General : IGeneral
     {
         public ModelContext context;
-       
+
 
         public Result Login(string email, string password)
         {
 
-            var users = context.Users.Where(u => u.Email==email && u.Password==password).ToList();
-          
-                if (users != null && users.Count > 0&& CheckPass(password)&& CheckEmailAddress(email))
-                {
-                var user = users.FirstOrDefault();
-               // return new Result(1, "Login succesfull!");
+            var users = context.Users.Where(u => u.Email == email && u.Password == password).ToList();
 
+            if (users != null && users.Count > 0 && CheckPass(password) && CheckEmailAddress(email))
+            {
+                var user = users.FirstOrDefault();
+                return new Result(1, "Login succesfull!");
             }
-         
-           // return new Result(-1, "User not found!");
-            
+            //return new BusinessUser { Result = new Result { -1, "user not found!" }};
+            return new Result(-1, "User not found!");
+
         }
 
         public Result SignUp(string email, string password, string name)
@@ -64,7 +63,7 @@ namespace server
                 var tasks = users.FirstOrDefault().Tasks;
                 return new Result(1, tasks);
             }
-            return  new Result(-1, "Email is wrong!");
+            return  new Result(-1, "User ID is wrong!!!");
 
         }
         public bool CheckPass(string pass)
@@ -74,7 +73,6 @@ namespace server
                 if (pass.Contains("(?!^[0-9]*$)(?!^[a-zA-Z]*$)^(.{8,15})$"))
                     return true;
             return false;
-            // return 1;
        }
       
         public static bool CheckEmailAddress(string email)

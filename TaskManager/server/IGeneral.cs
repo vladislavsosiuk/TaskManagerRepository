@@ -17,6 +17,6 @@ namespace server
         [OperationContract]
         Result ForgotPassword(string email);
         [OperationContract]
-        int ActualTasks(int userID);
+        Result ActualTasks(int userID);
     }
 }
