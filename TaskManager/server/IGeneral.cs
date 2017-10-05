@@ -1,4 +1,5 @@
-﻿using server.BusinessLayer;
+﻿using DataLair;
+using server.BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,8 @@ namespace server
         [OperationContract]
         BusinessUser SignUp(string email, string password, string name);
         [OperationContract]
-        BusinessUser ForgotPassword(string email);
+        Result ForgotPassword(string email);
         [OperationContract]
-        BusinessUser ActualTasks(int userID);
+        List<MyTask> ActualTasks(int userID);
     }
 }
