@@ -12,12 +12,12 @@ namespace server
     interface IGeneral
     {
         [OperationContract]
-        BusinessUser Login(string email, string password);
+        Result Login(string email, string password);
         [OperationContract]
-        BusinessUser SignUp(string email, string password, string name);
+        Result SignUp(string email, string password, string name);
         [OperationContract]
         Result RemindPassword(string email);
         [OperationContract]
-        int ActualTasks(int userID);
+        Result ActualTasks(int userID);
     }
 }

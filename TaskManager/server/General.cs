@@ -4,8 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DataLair;
-using DataLair.DataModel;
+
 using System.Text.RegularExpressions;
 using server.BusinessLayer;
 
@@ -24,11 +23,11 @@ namespace server
                 if (users != null && users.Count > 0&& CheckPass(password)&& CheckEmailAddress(email))
                 {
                 var user = users.FirstOrDefault();
-               // return new Result(1, "Login succesfull!");
+                return new Result(1, "Login succesfull!");
 
             }
          
-           // return new Result(-1, "User not found!");
+            return new Result(-1, "User not found!");
             
         }
 

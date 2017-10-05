@@ -179,7 +179,18 @@ namespace TaskManager
                 OnPropertyChanged("IsAuthenticated");
             }
         }
+        private string _email;
+        public string Email
+        {
+            get { return _email; }
+            set
+            {
+                _email = value;
+                OnPropertyChanged("Email");
+            }
+        }
         
+
         public void OnPropertyChanged([CallerMemberName]string name="")
         {
             PropertyChangedEventHandler handler = PropertyChanged;
