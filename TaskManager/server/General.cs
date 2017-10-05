@@ -1,3 +1,4 @@
+
 ﻿using DataLair;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,11 @@ namespace server
         public ModelContext context;
 
 
-        public Result Login(string email, string password)
+        public BusinessUser Login(string email, string password)
         {
 
             var users = context.Users.Where(u => u.Email == email && u.Password == password).ToList();
+
 
             if (users != null && users.Count > 0 && CheckPass(password) && CheckEmailAddress(email))
             {
@@ -29,7 +31,7 @@ namespace server
 
         }
 
-        public Result SignUp(string email, string password, string name)
+        public BusinessUser SignUp(string email, string password, string name)
         {
             var user = new User() { Name = name, Email = email, Password = password };
             if (user.Name != null && user.Email != null && user.Password != null&& CheckPass(password)&& CheckEmailAddress(email)&& CheckEmailAddress(name))
@@ -53,6 +55,10 @@ namespace server
                   return new Result(1, pass);
             }
             return new Result(-1, "Email is wrong!");
+        }
+        public Result RemindPassword(string userName)
+        {
+            throw new NotImplementedException();
         }
         public Result ActualTasks(int userID)
         {
