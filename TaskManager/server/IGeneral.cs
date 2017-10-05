@@ -13,9 +13,9 @@ namespace server
     interface IGeneral
     {
         [OperationContract]
-        Result Login(string email, string password);
+        BusinessUser Login(string email, string password);
         [OperationContract]
-        Result SignUp(string email, string password, string name);
+        BusinessUser SignUp(string email, string password, string name);
         [OperationContract]
         Result ForgotPassword(string email);
         [OperationContract]
