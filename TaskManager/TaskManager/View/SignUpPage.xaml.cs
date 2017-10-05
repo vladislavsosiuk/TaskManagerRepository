@@ -14,18 +14,27 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TaskManager
+namespace TaskManager.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for SignUpPage.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+
+    public partial class SignUpPage : MetroWindow
     {
-        public MainWindow()
+        public LoginView LoginView { get; set; }
+        public SignUpPage(LoginView loginView)
         {
             InitializeComponent();
+            LoginView = loginView;
+            
+
         }
-      
-        
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            LoginView.Show();
+        }
+
     }
 }
