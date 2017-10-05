@@ -4,19 +4,19 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
-
+using server.BusinessLayer;
 namespace server
 {
     [ServiceContract]
     interface IGeneral
     {
         [OperationContract]
-        Result Login(string email, string password);
+        BusinessUser Login(string email, string password);
         [OperationContract]
-        Result SignUp(string email, string password, string name);
+        BusinessUser SignUp(string email, string password, string name);
         [OperationContract]
-        Result ForgotPassword(string email);
+        BusinessUser ForgotPassword(string email);
         [OperationContract]
-        Result ActualTasks(int userID);
+        BusinessUser ActualTasks(int userID);
     }
 }
