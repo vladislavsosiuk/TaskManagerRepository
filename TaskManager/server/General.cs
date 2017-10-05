@@ -25,7 +25,6 @@ namespace server
                 return new BusinessUser { Name = user.Name };
             }
             return new BusinessUser { Result = new Result ( -1, "user not found!" )};
-
         }
 
         public BusinessUser SignUp(string email, string password, string name)
