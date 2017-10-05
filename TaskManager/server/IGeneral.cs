@@ -17,7 +17,7 @@ namespace server
         [OperationContract]
         BusinessUser SignUp(string email, string password, string name);
         [OperationContract]
-        Result ForgotPassword(string email);
+        Result RemindPassword(string email);
         [OperationContract]
         List<MyTask> ActualTasks(int userID);
     }
