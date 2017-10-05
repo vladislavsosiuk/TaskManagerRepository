@@ -18,6 +18,6 @@ namespace server
         [OperationContract]
         Result RemindPassword(string email);
         [OperationContract]
-        int ActualTasks(int userID);
+        Result ActualTasks(int userID);
     }
 }
