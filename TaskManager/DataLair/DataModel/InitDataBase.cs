@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLair.DataModel
+namespace DataLair
 {
     class InitDataBase : DropCreateDatabaseAlways<ModelContext>
     {
@@ -60,6 +60,10 @@ namespace DataLair.DataModel
                 TimeStop = new DateTime(2017, 10, 22),
                 Prognosis = new TimeSpan(2, 0, 0)
             };
+
+            u4.Tasks.Add(t1);
+            u2.Tasks.Add(t2);
+            u3.Tasks.Add(t3);
 
             context.Users.AddRange(new User[] { u1, u2, u3, u4 });
             context.MyTasks.AddRange(new MyTask[] { t1, t2, t3 });

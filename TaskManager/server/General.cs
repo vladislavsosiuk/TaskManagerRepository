@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLair;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -25,7 +26,7 @@ namespace server
 
         public Result SignUp(string email, string password, string name)
         {
-            var user = new User() { Name = name, email = email, Password = password };
+            var user = new User() { Name = name, Email = email, Password = password };
             context.Users.Add(user);
             context.SaveChanges();
 
