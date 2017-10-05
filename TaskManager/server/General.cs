@@ -1,10 +1,9 @@
-
 ﻿using DataLair;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using DataLair;
 using System.Text.RegularExpressions;
 using server.BusinessLayer;
 
@@ -20,14 +19,13 @@ namespace server
 
             var users = context.Users.Where(u => u.Email == email && u.Password == password).ToList();
 
-
             if (users != null && users.Count > 0 && CheckPass(password) && CheckEmailAddress(email))
             {
                 var user = users.FirstOrDefault();
-                return new Result(1, "Login succesfull!");
+                return new BusinessUser();
             }
             //return new BusinessUser { Result = new Result { -1, "user not found!" }};
-            return new Result(-1, "User not found!");
+            return new BusinessUser();
 
         }
 
@@ -38,13 +36,13 @@ namespace server
             {
                 context.Users.Add(user);
                 context.SaveChanges();
-                return new Result(1, "Registration succesfull!");
+                return new BusinessUser();
             }
-            return new Result(-1, "You must fill all fields!");
+            return new BusinessUser();
 
 
         }
-        public Result ForgotPassword(string email)
+        public BusinessUser ForgotPassword(string email)
         {
 
             var users = context.Users.Where(u => u.Email == email).ToList();
@@ -52,24 +50,20 @@ namespace server
             if (users!=null && users.Count == 1&&CheckEmailAddress(email))
             {
                string pass= users.FirstOrDefault().Password;
-                  return new Result(1, pass);
+                  return new BusinessUser();
             }
-            return new Result(-1, "Email is wrong!");
+            return new BusinessUser();
         }
-        public Result RemindPassword(string userName)
-        {
-            throw new NotImplementedException();
-        }
-        public Result ActualTasks(int userID)
+        public BusinessUser ActualTasks(int userID)
         {
             var users = context.Users.Where(u => u.UserID == userID).ToList();
             
             if(users!=null&& users.Count == 1)
             {
                 var tasks = users.FirstOrDefault().Tasks;
-                return new Result(1, tasks);
+                return new BusinessUser();
             }
-            return  new Result(-1, "User ID is wrong!!!");
+            return  new BusinessUser();
 
         }
         public bool CheckPass(string pass)
@@ -102,6 +96,16 @@ namespace server
                     return true;
             return false;
             
+        }
+
+        public Result RemindPassword(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        Result IGeneral.ActualTasks(int userID)
+        {
+            throw new NotImplementedException();
         }
 
         public General()
