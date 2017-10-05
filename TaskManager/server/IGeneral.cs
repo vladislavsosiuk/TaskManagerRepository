@@ -1,4 +1,5 @@
-﻿using System;
+﻿using server.BusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -11,11 +12,11 @@ namespace server
     interface IGeneral
     {
         [OperationContract]
-        Result Login(string email, string password);
+        BusinessUser Login(string email, string password);
         [OperationContract]
-        Result SignUp(string email, string password, string name);
+        BusinessUser SignUp(string email, string password, string name);
         [OperationContract]
-        Result ForgotPassword(string email);
+        Result RemindPassword(string email);
         [OperationContract]
         int ActualTasks(int userID);
     }

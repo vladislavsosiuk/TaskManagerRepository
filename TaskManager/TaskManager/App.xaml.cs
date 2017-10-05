@@ -1,4 +1,6 @@
 ﻿using DataLair;
+using server;
+using server.BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -14,9 +16,7 @@ namespace TaskManager
     /// </summary>
     public partial class App : Application
     {
-        public App()
-        {
-            ModelContext context = new ModelContext();
-        }
+        public static General GeneralService { get; set; } = new General();
+        public static BusinessUser CurrentUser { get; set; }
     }
 }

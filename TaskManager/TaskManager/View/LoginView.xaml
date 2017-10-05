@@ -1,4 +1,4 @@
-﻿<Controls:MetroWindow x:Class="TaskManager.MainWindow"
+﻿<Controls:MetroWindow x:Class="TaskManager.LoginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -12,9 +12,18 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label Content="Вход в систему" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" Margin="10,10,10,40"></Label>
             <TextBox  Controls:TextBoxHelper.Watermark="test@example.com" Controls:TextBoxHelper.ClearTextButton="True" Margin="0,0,0,15" Text="{Binding UserName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBox  Controls:TextBoxHelper.Watermark="Пароль" Controls:TextBoxHelper.ClearTextButton="True" Margin="0,0,0,30" Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Style="{DynamicResource SquareButtonStyle}" Content="Войти" Margin="15,0,15,2"></Button>
-            <Button Style="{DynamicResource SquareButtonStyle}" Content="Зарегестрироваться" Margin="15,0,15,0"/>
+            <PasswordBox Controls:TextBoxHelper.Watermark="Пароль" Controls:TextBoxHelper.ClearTextButton="True"
+                         Margin="0,0,0,30" Name="passwordBox"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Style="{DynamicResource SquareButtonStyle}" Content="Войти" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=passwordBox}"></Button>
+                <Button Style="{DynamicResource SquareButtonStyle}" Content="Забыл пароль" 
+                         Grid.Column="1"/>
+            </Grid>
+            <Button Style="{DynamicResource SquareButtonStyle}" Content="Зарегестрироваться" Command="{Binding SignUpCommand}"/>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>
