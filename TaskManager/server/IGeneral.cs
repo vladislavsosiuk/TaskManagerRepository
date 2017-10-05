@@ -17,5 +17,7 @@ namespace server
         BusinessUser SignUp(string email, string password, string name);
         [OperationContract]
         Result RemindPassword(string email);
+        [OperationContract]
+        int ActualTasks(int userID);
     }
 }
