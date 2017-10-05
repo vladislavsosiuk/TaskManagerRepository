@@ -1,5 +1,4 @@
 ﻿using DataLair;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,9 +58,9 @@ namespace server
             if(users!=null&& users.Count == 1)
             {
                 var tasks = users.FirstOrDefault().Tasks;
-                return new List<MyTask>();
+                return new List<MyTask>(tasks);
             }
-            return  new List<MyTask>();
+            return new List<MyTask>(null);
 
         }
         public bool CheckPass(string pass)
@@ -98,7 +97,14 @@ namespace server
 
         public Result RemindPassword(string email)
         {
-            throw new NotImplementedException();
+            var users = context.Users.Where(u => u.Email == email).ToList();
+
+            if (users != null && users.Count == 1 && CheckEmailAddress(email))
+            {
+                string pass = users.FirstOrDefault().Password;
+                return new Result(1, pass);
+            }
+            return new Result(-1, "User not found");
         }
 
         //Result IGeneral.ActualTasks(int userID)
