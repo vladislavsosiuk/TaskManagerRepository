@@ -40,7 +40,7 @@ namespace server
 
 
         }
-        public BusinessUser ForgotPassword(string email)
+        public Result ForgotPassword(string email)
         {
 
             var users = context.Users.Where(u => u.Email == email).ToList();
@@ -48,20 +48,20 @@ namespace server
             if (users!=null && users.Count == 1&&CheckEmailAddress(email))
             {
                string pass= users.FirstOrDefault().Password;
-                  return new BusinessUser();
+                  return new Result(1, pass);
             }
-            return new BusinessUser();
+            return new Result(-1, "User not found");
         }
-        public BusinessUser ActualTasks(int userID)
+        public List<MyTask> ActualTasks(int userID)
         {
             var users = context.Users.Where(u => u.UserID == userID).ToList();
             
             if(users!=null&& users.Count == 1)
             {
                 var tasks = users.FirstOrDefault().Tasks;
-                return new BusinessUser();
+                return new List<MyTask>();
             }
-            return  new BusinessUser();
+            return  new List<MyTask>();
 
         }
         public bool CheckPass(string pass)
