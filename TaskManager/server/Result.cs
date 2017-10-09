@@ -19,10 +19,6 @@ namespace server
             ResultMessage = result_message;
         }
 
-        public Result(int v, List<MyTask> tasks)
-        {
-            this.v = v;
-            this.tasks = tasks;
-        }
+   
     }
 }
