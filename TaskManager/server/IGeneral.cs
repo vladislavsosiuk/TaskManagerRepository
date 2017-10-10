@@ -19,6 +19,6 @@ namespace server
         [OperationContract]
         Result RemindPassword(string email);
         [OperationContract]
-        List<MyTask> ActualTasks(int userID);
+        List<BussinessMyTask> ActualTasks(int userID);
     }
 }
