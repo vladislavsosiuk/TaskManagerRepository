@@ -102,7 +102,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessLayer\BusinessProject.cs" />
     <Compile Include="BusinessLayer\BusinessUser.cs" />
+    <Compile Include="BusinessLayer\BussinessMyTask.cs" />
     <Compile Include="General.cs" />
     <Compile Include="IGeneral.cs" />
     <Compile Include="Result.cs" />
