@@ -19,11 +19,11 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button Style="{DynamicResource SquareButtonStyle}" Content="Войти" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=passwordBox}"></Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Content="Забыл пароль" 
-                         Grid.Column="1"/>
+                <Button Style="{DynamicResource SquareButtonStyle}" Margin="2" Content="Войти" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=passwordBox}"></Button>
+                <Button Style="{DynamicResource SquareButtonStyle}" Content="Напомнить пароль" Command="{Binding PasswordCommand}"
+                         Grid.Column="1" Margin="2" />
             </Grid>
-            <Button Style="{DynamicResource SquareButtonStyle}" Content="Зарегестрироваться" Command="{Binding SignUpCommand}"/>
+            <Button Style="{DynamicResource SquareButtonStyle}" Content="зарегистрироваться" Command="{Binding SignUpCommand}" Margin="2"/>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>

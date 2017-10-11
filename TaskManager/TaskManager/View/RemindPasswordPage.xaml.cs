@@ -21,13 +21,15 @@ namespace TaskManager.View
     /// Interaction logic for SignUpPage.xaml
     /// </summary>
 
-    public partial class SignUpPage : MetroWindow
+    public partial class RemindPasswordPage : MetroWindow
     {
         public LoginView LoginView { get; set; }
-        public SignUpPage(LoginView loginView)
+        public RemindPasswordPage(LoginView loginView)
         {
             InitializeComponent();
-            DataContext = new SignUpViewModel(loginView);
+
+            DataContext = new RemindPasswordViewModel(loginView);
+
             LoginView = loginView;
             
 
