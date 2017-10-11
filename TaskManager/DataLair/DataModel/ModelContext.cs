@@ -9,9 +9,10 @@ namespace DataLair
 {
     public class ModelContext : DbContext
     {
-        public ModelContext() : base("name=DbTaskManagerConnection")
+        public ModelContext() : base("DbTaskManager")
         {
-
+            Database.SetInitializer<ModelContext>(new InitDataBase());
+            Database.Log = x => Console.WriteLine(x);
         }
         public DbSet<Project> Projects { get; set; }
         public DbSet<User> Users { get; set; }

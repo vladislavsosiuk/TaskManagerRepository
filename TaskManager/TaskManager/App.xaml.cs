@@ -18,10 +18,14 @@ namespace TaskManager
     {
         public static General GeneralService { get; set; } = new General();
         public static BusinessUser CurrentUser { get; set; }
-        
+        ModelContext context = new ModelContext();
         public App()
         {
-            ModelContext context = new ModelContext();
+            var users = context.Users;
+            //foreach (var r in users)
+            //{
+            //    //Console.WriteLine(r.Email);
+            //}
         }
     }
 }
