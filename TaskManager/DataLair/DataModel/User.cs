@@ -24,7 +24,7 @@ namespace DataLair
 
         [InverseProperty(nameof(MyTask.ResponsibleUser))]
         public virtual List<MyTask> RespponsibleTasks { get; set; }
-        [InverseProperty(nameof(MyTask.DoerUser))]
+        [InverseProperty(nameof(MyTask.UsersThatWorksOnThatTask))]
         public virtual List<MyTask> TasksToDo { get; set; }
         //[InverseProperty("OwnerUser")]
         [InverseProperty(nameof(Project.OwnerUser))]
