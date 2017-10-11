@@ -50,7 +50,7 @@ namespace DataLair
 
         public MyTask()
         {
-            //Observers = new List<User>();
+            UsersThatWorksOnThatTask = new List<User>();
         }
     }
 
