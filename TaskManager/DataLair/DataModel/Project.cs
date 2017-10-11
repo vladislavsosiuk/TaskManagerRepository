@@ -17,7 +17,7 @@ namespace DataLair
 
         //Ведущий проекта
 
-        public int OwnerUserID { get; set; }
+        public int? OwnerUserID { get; set; }
         [ForeignKey(nameof(OwnerUserID))]
         public virtual User OwnerUser { get; set; }
         //[ForeignKey("User")]
@@ -25,6 +25,7 @@ namespace DataLair
         //public virtual User User { get; set; }
 
         //Список задач проекта
+        [InverseProperty(nameof(MyTask.Project))]
         public virtual List<MyTask> Tasks { get; set; }
 
         public Project()

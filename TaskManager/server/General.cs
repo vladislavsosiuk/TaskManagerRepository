@@ -20,17 +20,17 @@ namespace server
             {
                 var user = users.FirstOrDefault();
                 var userToReturn = new BusinessUser { Name = user.Name, Password = user.Password, Email = user.Email, UserID=user.UserID};
-                 var userTasks = context.MyTasks.Where(t => t.Observers.Contains(user)).Select(tt=>new BussinessMyTask
-                 {
-                     ID =tt.ID,
-                     CurrentPriority =tt.CurrentPriority,
-                     Description = tt.Description,
-                     Name = tt.Name,
-                     Prognosis = tt.Prognosis,
-                     TimeStart = tt.TimeStart,
-                     TimeStop = tt.TimeStop,                     
-                 }).ToList();
-                userToReturn.Tasks = userTasks;
+                 //var userTasks = context.MyTasks.Where(t => t.Observers.Contains(user)).Select(tt=>new BussinessMyTask
+                 //{
+                 //    ID =tt.ID,
+                 //    CurrentPriority =tt.CurrentPriority,
+                 //    Description = tt.Description,
+                 //    Name = tt.Name,
+                 //    Prognosis = tt.Prognosis,
+                 //    TimeStart = tt.TimeStart,
+                 //    TimeStop = tt.TimeStop,                     
+                 //}).ToList();
+                //userToReturn.Tasks = userTasks;
                 return userToReturn;
 
             }
@@ -66,34 +66,34 @@ namespace server
             
             if(user!=null)
             {
-               var tasks= user.Tasks.Select(t => new BussinessMyTask
-                {
-                    CurrentPriority = t.CurrentPriority,
-                    Description = t.Description,
-                    ID = t.ID,
-                    Name = t.Name,
-                    Prognosis = t.Prognosis,
-                    TimeStart = t.TimeStart,
-                    TimeStop = t.TimeStop,
-                    Project = context.Projects.Where(p=>p.ID==t.ProjectID).Select(pp=>new BusinessProject
-                    {
-                        ID = pp.ID,
-                        Name=pp.Name,
-                        OwnerUser = context.Users.Where(u=>u.UserID== pp.OwnerUser.UserID).Select(uu=>new BusinessUser
-                        {
-                            Email=uu.Email,
-                            Name=uu.Name,
-                            UserID=uu.UserID,
-                        }).First(),                        
-                    }).FirstOrDefault(),
-                    ResponsibleUser = context.Users.Where(u=>u.UserID==t.ResponsibleUserID).Select(su=>new BusinessUser
-                    {
-                        Email=su.Email,
-                        Name = su.Name,
-                        UserID = su.UserID,
-                    }).FirstOrDefault(),
-                }).ToList();   
-                return tasks;
+               //var tasks= user.Tasks.Select(t => new BussinessMyTask
+               // {
+               //     CurrentPriority = t.CurrentPriority,
+               //     Description = t.Description,
+               //     ID = t.ID,
+               //     Name = t.Name,
+               //     Prognosis = t.Prognosis,
+               //     TimeStart = t.TimeStart,
+               //     TimeStop = t.TimeStop,
+               //     Project = context.Projects.Where(p=>p.ID==t.ProjectID).Select(pp=>new BusinessProject
+               //     {
+               //         ID = pp.ID,
+               //         Name=pp.Name,
+               //         OwnerUser = context.Users.Where(u=>u.UserID== pp.OwnerUser.UserID).Select(uu=>new BusinessUser
+               //         {
+               //             Email=uu.Email,
+               //             Name=uu.Name,
+               //             UserID=uu.UserID,
+               //         }).First(),                        
+               //     }).FirstOrDefault(),
+               //     ResponsibleUser = context.Users.Where(u=>u.UserID==t.ResponsibleUserID).Select(su=>new BusinessUser
+               //     {
+               //         Email=su.Email,
+               //         Name = su.Name,
+               //         UserID = su.UserID,
+               //     }).FirstOrDefault(),
+               // }).ToList();   
+                //return tasks;
             }
             return null;
 

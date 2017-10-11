@@ -17,26 +17,21 @@ namespace DataLair
         public string Name { get; set; }
 
         //Ссылка на проект
-        public int ProjectID { get; set; }
+        public int? ProjectID { get; set; }
         [ForeignKey(nameof(ProjectID))]
         public virtual Project Project { get; set; }
 
         //Ответственный за выполнение задачи        
-        public int ResponsibleUserID { get; set; }
-        //[ForeignKey(nameof(ResponsibleUserID))]
+        public int? ResponsibleUserID { get; set; }
+        [ForeignKey(nameof(ResponsibleUserID))]
         public virtual User ResponsibleUser { get; set; }
-        //[ForeignKey("ResponsibleUser")]
-        //public int ResponsibleUserID { get; set; }
-        //public virtual User User { get; set; }
 
-
-        //Исполнитель        
-        public int DoerUserID { get; set; }
-        [ForeignKey(nameof(DoerUserID))]
-        public virtual User DoerUser { get; set; }
+        
 
 
         //Участники-наблюдатели
+        [InverseProperty(nameof(User.TasksToDo))]
+        public List<User> UsersThatWorksOnThatTask { get; set; }        
         //public virtual List<User> Observers { get; set; }
 
         public Priority CurrentPriority { get; set; }
