@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -9,25 +10,36 @@ namespace DataLair
 {
     public class MyTask
     {
+        [Key]
         public int ID { get; set; }
 
         //Название задачи
         public string Name { get; set; }
 
         //Ссылка на проект
-        [ForeignKey("Project")]
-        public int ProjectID { get; set; } 
+        public int ProjectID { get; set; }
+        [ForeignKey(nameof(ProjectID))]
         public virtual Project Project { get; set; }
 
-        //Ответственный за выполнение задачи
-        [ForeignKey("ResponsibleUser")]
+        //Ответственный за выполнение задачи        
         public int ResponsibleUserID { get; set; }
+        //[ForeignKey(nameof(ResponsibleUserID))]
         public virtual User ResponsibleUser { get; set; }
+        //[ForeignKey("ResponsibleUser")]
+        //public int ResponsibleUserID { get; set; }
+        //public virtual User User { get; set; }
+
+
+        //Исполнитель        
+        public int DoerUserID { get; set; }
+        [ForeignKey(nameof(DoerUserID))]
+        public virtual User DoerUser { get; set; }
+
 
         //Участники-наблюдатели
-        public virtual List<User> Observers { get; set; }
+        //public virtual List<User> Observers { get; set; }
 
-        public Priority CurrentPriority { get; set; }        
+        public Priority CurrentPriority { get; set; }
 
         //Дата установки задачи
         public DateTime TimeStart { get; set; }
@@ -43,7 +55,7 @@ namespace DataLair
 
         public MyTask()
         {
-            Observers = new List<User>();
+            //Observers = new List<User>();
         }
     }
 
