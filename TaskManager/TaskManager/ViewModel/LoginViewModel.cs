@@ -25,7 +25,7 @@ namespace TaskManager
         }
         #region fields
         Command loginCommand;
-        Command forgotPasswordCommand;
+       // Command forgotPasswordCommand;
         Command signUpCommand;
         bool isLoading;
         #endregion
@@ -64,15 +64,16 @@ namespace TaskManager
                 return signUpCommand;
             }
         }
-        public ICommand ForgotPasswordCommand
+        public ICommand PasswordCommand
         {
             get
             {
-                if (forgotPasswordCommand == null)
-                    forgotPasswordCommand = new Command(RemindPassword, CanRemindPassword);
-                return forgotPasswordCommand;
+                if (signUpCommand == null)
+                    signUpCommand = new Command(RemindPassword);
+                return signUpCommand;
             }
         }
+
         #endregion
         #region methods
         public void SignUp(object parameter)
@@ -81,35 +82,14 @@ namespace TaskManager
             signUpPage.Show();
             CurrentPage.Hide();
         }
+        public void RemindPassword(object parameter)
+        {
+            var signUpPage = new RemindPasswordPage(CurrentPage);
+            signUpPage.Show();
+            CurrentPage.Hide();
+        }
 
-        public async void RemindPassword(object parameter)
-        {
-            IsLoading = true;
-            try
-            {
-                var result =await Task<Result>.Run(()=>App.GeneralService.RemindPassword(UserName));
-                if (result.ResultCode > 0)
-                {
-                    await CurrentPage.ShowMessageAsync("Ваш пароль", result.ResultMessage);
-                }
-                else
-                {
-                    await CurrentPage.ShowMessageAsync("Ошибка", result.ResultMessage);
-                }
-            }
-            catch (WebException)
-            {
-                await CurrentPage.ShowMessageAsync("Ошибка", "Проверьте подключение к интернету");
-            }
-            finally
-            {
-                IsLoading = false;
-            }
-        }
-        public bool CanRemindPassword(object parameter)
-        {
-            return !string.IsNullOrEmpty(UserName);
-        }
+     
         public bool CanLogin(object parameter)
         {
             var pBox = parameter as PasswordBox;
