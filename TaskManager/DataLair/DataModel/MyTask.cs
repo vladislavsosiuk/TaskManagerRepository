@@ -26,13 +26,9 @@ namespace DataLair
         [ForeignKey(nameof(ResponsibleUserID))]
         public virtual User ResponsibleUser { get; set; }
 
-        
-
-
         //Участники-наблюдатели
         [InverseProperty(nameof(User.TasksToDo))]
         public List<User> UsersThatWorksOnThatTask { get; set; }        
-        //public virtual List<User> Observers { get; set; }
 
         public Priority CurrentPriority { get; set; }
 
@@ -50,7 +46,7 @@ namespace DataLair
 
         public MyTask()
         {
-            //Observers = new List<User>();
+            UsersThatWorksOnThatTask = new List<User>();
         }
     }
 
