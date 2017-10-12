@@ -9,7 +9,8 @@
                       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Label Content="Регистрация" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" Margin="10,10,10,40"/>
+            <Label Content="Регистрация" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" Margin="10,10,10,0"/>
+            <Controls:ProgressRing Margin="0,5,0,5" IsActive="{Binding IsLoading}"/>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -24,15 +25,15 @@
                 <Label Content="Почта:" Margin="0,0,0,0"/>
                 <TextBox Controls:TextBoxHelper.Watermark="test@example.com" Controls:TextBoxHelper.ClearTextButton="True" Grid.Column="1" Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <Label Content="Пароль:" Grid.Row="1"/>
-                <PasswordBox Controls:TextBoxHelper.Watermark="password" Controls:TextBoxHelper.ClearTextButton="True"
-                         Name="passwordBoxReg" Grid.Column="1" Grid.Row="1"/>
-                <Label Content="Подтвердите пароль:" Grid.Row="2"/>
-                <PasswordBox Controls:TextBoxHelper.Watermark="Пароль" Controls:TextBoxHelper.ClearTextButton="True"
-                          Name="passwordBoxReg1" Grid.Column="1" Grid.Row="2"/>
+                <TextBox Controls:TextBoxHelper.Watermark="password" Controls:TextBoxHelper.ClearTextButton="True"
+                         Name="passwordBoxReg" Grid.Column="1" Grid.Row="1" Text="{Binding Password}"/>
+                
                 <Label Content="Имя:" Grid.Row="3"/>
-                <TextBox Controls:TextBoxHelper.ClearTextButton="True" Grid.Row="3" Grid.Column="1"/>
+                <TextBox Controls:TextBoxHelper.ClearTextButton="True" Grid.Row="3" Grid.Column="1" Text="{Binding Name}"/>
             </Grid>
-            <Button Style="{DynamicResource SquareButtonStyle}" Content="Зарегестрироваться" Margin="60,20,60,0"/>
+            <Button Style="{DynamicResource SquareButtonStyle}" Content="Зарегестрироваться" Margin="60,20,60,0" Command="{Binding SignUpCommandReg}">
+                
+            </Button>
         </StackPanel>
     </Grid>
 </Controls:MetroWindow>

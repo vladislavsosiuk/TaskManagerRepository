@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using TaskManager.Helpers;
 using TaskManager.View;
+using CheckData;
 
 namespace TaskManager
 {
@@ -25,7 +26,7 @@ namespace TaskManager
         }
         #region fields
         Command loginCommand;
-       // Command forgotPasswordCommand;
+        Command forgotPasswordCommand;
         Command signUpCommand;
         bool isLoading;
         #endregion
@@ -64,13 +65,13 @@ namespace TaskManager
                 return signUpCommand;
             }
         }
-        public ICommand PasswordCommand
+        public ICommand ForgotPasswordCommand
         {
             get
             {
-                if (signUpCommand == null)
-                    signUpCommand = new Command(RemindPassword);
-                return signUpCommand;
+                if (forgotPasswordCommand == null)
+                    forgotPasswordCommand = new Command(RemindPassword);
+                return forgotPasswordCommand;
             }
         }
 
@@ -84,8 +85,9 @@ namespace TaskManager
         }
         public void RemindPassword(object parameter)
         {
-            var signUpPage = new RemindPasswordPage(CurrentPage);
-            signUpPage.Show();
+
+            var remindPasswordPage = new RemindPasswordPage(CurrentPage);
+            remindPasswordPage.Show();
             CurrentPage.Hide();
         }
 
@@ -102,9 +104,13 @@ namespace TaskManager
         public async void Login(object parameter)
         {
             IsLoading = true;
+
             try
             {
+               
+                
                 var resultUser = await Task<BusinessUser>.Run(() => App.GeneralService.Login(UserName, Password));
+                
                 if (resultUser.Result == null)
                 {
                     App.CurrentUser = resultUser;
