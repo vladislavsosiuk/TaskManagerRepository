@@ -15,7 +15,7 @@ namespace ConsoleTestDB
             var users = Context.Users.ToList();
             foreach(User user in users)
             {
-                Console.WriteLine($" {user.Name} {user.Email} {user.Projects.ToList()[0].Name}");
+                Console.WriteLine($" {user.Name} {user.Email}");
             }
             Console.WriteLine();
 

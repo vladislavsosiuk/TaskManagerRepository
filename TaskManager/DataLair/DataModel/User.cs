@@ -16,8 +16,8 @@ namespace DataLair
         public int UserID { get; set; }
         public string Name { get; set; }
 
-        //[Index(IsUnique = true)]
-        //[MaxLength(255)]
+        [Index(IsUnique = true)]
+        [MaxLength(255)]
         public string Email { get; set; }
         //public virtual IPEndPoint IPEndPoint { get; set; }
         public string Password { get; set; }
