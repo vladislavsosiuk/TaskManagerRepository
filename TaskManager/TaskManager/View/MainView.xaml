@@ -1,0 +1,111 @@
+﻿<Controls:MetroWindow x:Class="TaskManager.View.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskManager.View"
+        mc:Ignorable="d"
+        Title="TaskManager" Height="600" Width="900"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
+                <ResourceDictionary Source="MainDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>        
+    </Window.Resources>
+    <Grid>
+        <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            --><!--<ColumnDefinition/>--><!--
+        </Grid.ColumnDefinitions>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--<StackPanel Grid.Row="2">
+            <Button Content="Проекты" Height="25" Margin="5"/>
+            <Controls:Badged Badge="{Binding }" BadgePlacementMode="TopRight" Height="25" Margin="5">
+                <Button Content="Задачи"/>
+            </Controls:Badged>
+        </StackPanel>-->
+
+        <Controls:MetroAnimatedTabControl Grid.Column="1" Grid.Row="2" TabStripPlacement="Left">
+            <TabItem Name="TabProjects">               
+                <TabItem.Header>
+                    
+                    <!--<Controls:Badged Badge="{Binding }">
+                        Проекты
+                    </Controls:Badged>-->
+                    Проекты
+                    <!--<Label>Проекты</Label>-->
+                    <!--<TextBlock>Проекты</TextBlock>-->
+                </TabItem.Header>
+                <TabItem.Content>
+                    <ListBox>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Controls:Tile Title=""
+                                               Style="{StaticResource StandartTileStyle}"
+                                               />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel></WrapPanel>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
+                </TabItem.Content>
+            </TabItem>
+            
+            <TabItem Name="TabMyTasks">
+                <TabItem.Header>
+                    <!--Задачи-->
+                    <Controls:Badged Badge="{Binding }">
+                        <Label>Задачи</Label>
+                    </Controls:Badged>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <ListBox>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel></WrapPanel>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+
+                        <ListBox Grid.Column="1">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel></WrapPanel>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            
+        </Controls:MetroAnimatedTabControl>
+    </Grid>
+    </Controls:MetroWindow>

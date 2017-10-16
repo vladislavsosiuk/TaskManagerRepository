@@ -44,9 +44,13 @@ namespace DataLair
         //Суть задачи
         public string Description { get; set; }
 
+        //Отметка о выполнении
+        public bool IsDone { get; set; }
+
         public MyTask()
         {
             UsersThatWorksOnThatTask = new List<User>();
+            IsDone = false;
         }
     }
 
