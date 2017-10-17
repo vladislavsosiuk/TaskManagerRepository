@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckData", "CheckData\CheckData.csproj", "{E40C5657-50CE-4C96-985A-F237C58B05AE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{3BC8610B-3617-4BCA-826E-9852016208AC}"
+
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestDB", "onsoleTestDB\ConsoleTestDB.csproj", "{2F5ED152-06C3-4700-AA9D-75E8C000D779}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
