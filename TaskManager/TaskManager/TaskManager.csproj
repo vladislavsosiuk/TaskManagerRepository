@@ -133,6 +133,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CheckData\CheckData.csproj">
+      <Project>{e40c5657-50ce-4c96-985a-f237c58b05ae}</Project>
+      <Name>CheckData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataLair\DataLair.csproj">
       <Project>{A7142518-AFAE-4F49-A338-F96194B84AA0}</Project>
       <Name>DataLair</Name>

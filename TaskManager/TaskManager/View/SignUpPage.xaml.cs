@@ -24,9 +24,12 @@ namespace TaskManager.View
     public partial class SignUpPage : MetroWindow
     {
         public LoginView LoginView { get; set; }
+        public static SignUpPage Current { get; set; }
         public SignUpPage(LoginView loginView)
         {
             InitializeComponent();
+            SignUpPage.Current = this;
+
             DataContext = new SignUpViewModel(loginView);
             LoginView = loginView;
             

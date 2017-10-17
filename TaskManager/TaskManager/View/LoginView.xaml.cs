@@ -24,6 +24,7 @@ namespace TaskManager
         public LoginView()
         {
             InitializeComponent();
+           
             this.DataContext = new LoginViewModel(this);
             
         }
