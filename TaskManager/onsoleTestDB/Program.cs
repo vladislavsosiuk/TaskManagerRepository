@@ -1,4 +1,5 @@
 ﻿using DataLair;
+using DataLayerFromDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,10 @@ namespace ConsoleTestDB
     {
         static void Main(string[] args)
         {
-            ModelContext Context = new ModelContext();
+            //ModelContext Context = new ModelContext();
+            DbEntities Context = new DbEntities();
             var users = Context.Users.ToList();
-            foreach(User user in users)
+            foreach(DataLayerFromDB.User user in users)
             {
                 Console.WriteLine($" {user.Name} {user.Email}");
             }
@@ -26,19 +28,19 @@ namespace ConsoleTestDB
             }
 
             //var projects = Context.Projects;
-            //foreach(Project p in projects)
+            //foreach (Project p in projects)
             //{
             //    Console.WriteLine($" {p.Name} {p.OwnerUser.Name}");
 
-            //    var tasks = p.Tasks;
-            //    foreach (MyTask t in tasks)
-            //    {
-            //        Console.WriteLine($" Project {t.Name},  Description: {t.Description}");
-            //        Console.WriteLine($"{t.ResponsibleUser}");
-            //        Console.WriteLine();
-            //    }
-            //}
-            //Console.ReadLine();
-        }
+                //    var tasks = p.Tasks;
+                //    foreach (MyTask t in tasks)
+                //    {
+                //        Console.WriteLine($" Project {t.Name},  Description: {t.Description}");
+                //        Console.WriteLine($"{t.ResponsibleUser}");
+                //        Console.WriteLine();
+                //    }
+                //}
+                //Console.ReadLine();
+            }
     }
 }

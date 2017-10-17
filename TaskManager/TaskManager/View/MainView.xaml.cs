@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using server;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,10 @@ namespace TaskManager.View
     /// </summary>
     public partial class MainView : MetroWindow
     {
-        public MainView()
+        public MainView(IDbContext context)
         {
             InitializeComponent();     
-            this.DataContext = new MainViewModel(this);
+            this.DataContext = new MainViewModel(context);
         }
     }
 }

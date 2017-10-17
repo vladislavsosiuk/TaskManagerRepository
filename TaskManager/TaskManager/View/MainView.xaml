@@ -34,8 +34,10 @@
             </Controls:Badged>
         </StackPanel>-->
 
+        <Controls:SplitButton Grid.Row="1" HorizontalAlignment="Right" ItemsSource="{Binding Users}" SelectedItem="{Binding CurrentUser}" Width="200"/>
+
         <Controls:MetroAnimatedTabControl Grid.Column="1" Grid.Row="2" TabStripPlacement="Left">
-            <TabItem Name="TabProjects">               
+            <TabItem Name="TabProjects">                
                 <TabItem.Header>
                     
                     <!--<Controls:Badged Badge="{Binding }">
@@ -46,12 +48,34 @@
                     <!--<TextBlock>Проекты</TextBlock>-->
                 </TabItem.Header>
                 <TabItem.Content>
-                    <ListBox>
+                    <ListBox ItemsSource="{Binding Projects}" SelectedItem="{Binding CurrentProject}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Controls:Tile Title=""
-                                               Style="{StaticResource StandartTileStyle}"
-                                               />
+                                <Controls:Tile Title="{Binding Name}" TitleFontSize="15" VerticalTitleAlignment="Top"
+                                               Style="{StaticResource StandartTileStyle}">
+                                    <Controls:Tile.ContentTemplate>
+                                        <DataTemplate>                                            
+                                            <StackPanel>
+                                                <Label Content=""/>
+                                                <!--<StackPanel Orientation="Horizontal">
+                                                    <Label Content="задч"
+                                                </StackPanel>-->
+                                                <TextBlock>
+                                                    <Run Text="{Binding TasksCount}"/>
+                                                    <Run Text=" задач"/>
+                                                </TextBlock>
+                                                <TextBlock TextAlignment="Right">
+                                                    <Run Text="В работе: "/>
+                                                    <Run Text="{Binding NotDoneTasksCount}"/>
+                                                </TextBlock>
+                                                <TextBlock TextAlignment="Right">
+                                                    <Run Text="Выполнено: "/>
+                                                    <Run Text="{Binding DoneTasksCount}"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Controls:Tile.ContentTemplate>
+                                </Controls:Tile>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                         <ListBox.ItemsPanel>
@@ -65,10 +89,10 @@
             
             <TabItem Name="TabMyTasks">
                 <TabItem.Header>
-                    <!--Задачи-->
-                    <Controls:Badged Badge="{Binding }">
+                    Задачи
+                    <!--<Controls:Badged Badge="{Binding }">
                         <Label>Задачи</Label>
-                    </Controls:Badged>
+                    </Controls:Badged>-->
                 </TabItem.Header>
                 <TabItem.Content>
                     <Grid>

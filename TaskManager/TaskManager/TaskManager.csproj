@@ -9,11 +9,12 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TaskManager</RootNamespace>
     <AssemblyName>TaskManager</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -148,6 +149,10 @@
     <ProjectReference Include="..\DataLair\DataLair.csproj">
       <Project>{A7142518-AFAE-4F49-A338-F96194B84AA0}</Project>
       <Name>DataLair</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayerFromDB\DataLayerFromDB.csproj">
+      <Project>{7aeea355-8c56-488d-a27a-ddd76e9f42c8}</Project>
+      <Name>DataLayerFromDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\server\server.csproj">
       <Project>{600EC8D0-ABEF-4790-BC99-4E2C831D2B63}</Project>
