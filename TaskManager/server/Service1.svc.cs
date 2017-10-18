@@ -19,6 +19,7 @@ namespace server
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {
+
             if (composite == null)
             {
                 throw new ArgumentNullException("composite");

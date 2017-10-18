@@ -13,10 +13,10 @@ namespace CheckData
         {
             if (name != null)
             {
-                //Цифры в имени должны отсуствоватть, от 2 до 15 символов
+                //Цифры в имени должны отсуствоватть, от 3 до 11 символов
                 try
                 {
-                    Regex rx = new Regex(@"(?!^[a-zA-Z]*$)^(.{2,15})$");
+                    Regex rx = new Regex(@"^[a-zA-Z][a-zA-Z0-9]{3,11}$");
                     return rx.IsMatch(name);
                 }
                 catch (FormatException)
