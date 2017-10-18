@@ -14,32 +14,33 @@ namespace TaskManager
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        public MainViewModel(IDbContext context)
+        public MainViewModel(IMainViewContext context)
         {
             Context = context;
-            Projects = context.GetProjects();
-            Users = context.GetUsers();
-            Tasks = context.GetTasks();
         }
         #region Fields
-        List<BussinessMyTask> tasks;
-        List<BusinessProject> projects;
-        List<BusinessUser> users;
+        //List<BussinessMyTask> tasks;
+        //List<BusinessProject> projects;
+        //List<BusinessUser> users;
         BussinessMyTask currentTask;
         BusinessProject currentProject;
         BusinessUser currentUser;
         #endregion
         #region Properties
-        public IDbContext Context { get; set; }
+        public IMainViewContext Context { get; set; }
         public List<BussinessMyTask> Tasks
         {
             get
             {
-                return tasks;
+                //return tasks;
+                if (string.IsNullOrEmpty(CurrentUser.Name))
+                    return Context.GetAllTasks();
+                else
+                    return Context.GetTasksByUserID(CurrentUser.UserID);
             }
             set
             {
-                tasks = value;
+                //tasks = value;
                 OnPropertyChanged("tasks");
             }
         }
@@ -47,11 +48,15 @@ namespace TaskManager
         {
             get
             {
-                return projects;
+                //return projects;
+                if (string.IsNullOrEmpty(CurrentUser.Name))
+                    return Context.GetAllProjects();
+                else
+                    return Context.GetProjectsByUserID(CurrentUser.UserID);
             }
             set
             {
-                projects = value;
+                //projects = value;
                 OnPropertyChanged("Projects");
             }
         }
@@ -59,11 +64,12 @@ namespace TaskManager
         {
             get
             {
-                return users;
+                //return users;
+                return Context.GetAllUsers();
             }
             set
             {
-                users = value;
+                //users = value;
                 OnPropertyChanged("Users");
             }
         }

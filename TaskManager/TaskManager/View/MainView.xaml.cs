@@ -21,7 +21,7 @@ namespace TaskManager.View
     /// </summary>
     public partial class MainView : MetroWindow
     {
-        public MainView(IDbContext context)
+        public MainView(IMainViewContext context)
         {
             InitializeComponent();     
             this.DataContext = new MainViewModel(context);

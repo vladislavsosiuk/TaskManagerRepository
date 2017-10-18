@@ -6,5 +6,6 @@
         <Setter Property="Width" Value="200"/>
         <Setter Property="Height" Value="150"/>
         <Setter Property="TitleFontSize" Value="15"/>
+        <Setter Property="Background" Value="MediumPurple"/>
     </Style>
 </ResourceDictionary>

@@ -106,7 +106,7 @@
     <Compile Include="BusinessLayer\BusinessUser.cs" />
     <Compile Include="BusinessLayer\BussinessMyTask.cs" />
     <Compile Include="General.cs" />
-    <Compile Include="IDbContext.cs" />
+    <Compile Include="IMainViewContext.cs" />
     <Compile Include="IGeneral.cs" />
     <Compile Include="Result.cs" />
     <Compile Include="Service1.svc.cs">

@@ -64,6 +64,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model.cs" />
     <Compile Include="MyTask.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -100,6 +101,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\server\server.csproj">
+      <Project>{600ec8d0-abef-4790-bc99-4e2c831d2b63}</Project>
+      <Name>server</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
