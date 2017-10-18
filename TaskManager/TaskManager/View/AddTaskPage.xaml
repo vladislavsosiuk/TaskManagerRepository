@@ -1,0 +1,60 @@
+﻿<Controls:MetroWindow x:Class="TaskManager.View.AddTask"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskManager.View"
+        mc:Ignorable="d"
+        Title="AddTask" Height="400" Width="350"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
+    <Grid>
+        <DockPanel LastChildFill="True">
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Label Content="Добавление новой задачи" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" Margin="10,10,10,0"></Label>
+                <Controls:ProgressRing Margin="0,5,0,5" IsActive="{Binding IsLoading}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Content="Задача" Margin="0,0,0,0"/>
+                    <TextBox Controls:TextBoxHelper.Watermark="Укажите название" Grid.Column="1"/>
+                    <Label Content="Проект" Grid.Row="1"/>
+                    <TextBox Controls:TextBoxHelper.Watermark="Добавить в проект" Grid.Row="1" Grid.Column="1"/>
+                    <Label Content="Ответственный" Grid.Row="2"/>
+                    <TextBox Controls:TextBoxHelper.Watermark="Назначить ответственного" Grid.Row="2" Grid.Column="1"/>
+                    <Label Content="Наблюдатели" Grid.Row="3"/>
+                    <TextBox Controls:TextBoxHelper.Watermark="Подписать на обновления" Grid.Row="3" Grid.Column="1"/>
+                    <Label Content="Приоритет" Grid.Row="4"/>
+                    <ComboBox Controls:ComboBoxHelper.CharacterCasing="Normal" Name="Priority" Grid.Row="4" Grid.Column="1">
+                        <ComboBoxItem IsSelected="True">Обычный</ComboBoxItem>
+                        <ComboBoxItem>Срочный</ComboBoxItem>
+                        <ComboBoxItem>Критический</ComboBoxItem>
+                    </ComboBox>
+                    <Label Content="Срок до" Grid.Row="5"/>
+                    <TextBox Controls:TextBoxHelper.Watermark="Установить крайний срок" Grid.Row="5" Grid.Column="1"/>
+                    <Label Content="Прогноз" Grid.Row="6"/>
+                    <Grid Grid.Row="6" Grid.Column="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Controls:TextBoxHelper.Watermark="ч." Grid.Column="0"/>
+                        <TextBox Controls:TextBoxHelper.Watermark="мин." Grid.Column="1"/>
+                    </Grid>
+                </Grid>
+                <TextBox Controls:TextBoxHelper.Watermark="Введите описание задачи"/>
+                <Button Style="{DynamicResource SquareButtonStyle}" Content="Сохранить" Margin="2,0,175,0"/>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Controls:MetroWindow>
