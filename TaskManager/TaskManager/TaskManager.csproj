@@ -75,10 +75,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helpers\Command.cs" />
+    <Compile Include="ViewModel\AddTaskViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\RemindPasswordViewModel.cs" />
     <Compile Include="ViewModel\SignUpViewModel.cs" />
+    <Compile Include="View\AddTaskPage.xaml.cs">
+      <DependentUpon>AddTaskPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
@@ -88,6 +92,10 @@
     <Compile Include="View\SignUpPage.xaml.cs">
       <DependentUpon>SignUpPage.xaml</DependentUpon>
     </Compile>
+    <Page Include="View\AddTaskPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -146,6 +154,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CheckData\CheckData.csproj">
+      <Project>{e40c5657-50ce-4c96-985a-f237c58b05ae}</Project>
+      <Name>CheckData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataLair\DataLair.csproj">
       <Project>{A7142518-AFAE-4F49-A338-F96194B84AA0}</Project>
       <Name>DataLair</Name>

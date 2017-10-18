@@ -131,6 +131,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CheckData\CheckData.csproj">
+      <Project>{e40c5657-50ce-4c96-985a-f237c58b05ae}</Project>
+      <Name>CheckData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataLair\DataLair.csproj">
       <Project>{a7142518-afae-4f49-a338-f96194b84aa0}</Project>
       <Name>DataLair</Name>

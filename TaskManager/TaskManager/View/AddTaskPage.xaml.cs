@@ -11,35 +11,31 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TaskManager.ViewModel;
 
 namespace TaskManager.View
 {
     /// <summary>
-    /// Interaction logic for SignUpPage.xaml
+    /// Логика взаимодействия для AddTask.xaml
     /// </summary>
-
-    public partial class SignUpPage : MetroWindow
+    public partial class AddTaskPage : MetroWindow
     {
-        public LoginView LoginView { get; set; }
-        public static SignUpPage Current { get; set; }
-        public SignUpPage(LoginView loginView)
+        public MainView MainView { get; set; }
+        public static AddTaskPage Current { get; set; }
+        public AddTaskPage(MainView mainView)
         {
-            InitializeComponent();
-            SignUpPage.Current = this;
+            //InitializeComponent();
+            AddTaskPage.Current = this;
 
-            DataContext = new SignUpViewModel(loginView);
-            LoginView = loginView;
-            
+            DataContext = new AddTaskViewModel(mainView);
+            MainView = mainView;
 
         }
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            LoginView.Show();
+            MainView.Show();
         }
-
     }
 }
