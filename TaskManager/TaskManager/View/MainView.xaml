@@ -34,8 +34,16 @@
             </Controls:Badged>
         </StackPanel>-->
 
+        <Controls:SplitButton HorizontalAlignment="Right" ItemsSource="{Binding Users}" SelectedItem="{Binding CurrentUser}" Width="250"/>
+
+        <Border BorderThickness="2" BorderBrush="AliceBlue" Grid.Row="1">
+            <DockPanel LastChildFill="True">
+                <Button DockPanel.Dock="Left" HorizontalAlignment="Right" Content="Add New" Width="100" Height="30" Margin="0 0 20 0" Command="{Binding AddCommand}" Style="{StaticResource AccentedSquareButtonStyle}"/>
+            </DockPanel>
+        </Border>
+        
         <Controls:MetroAnimatedTabControl Grid.Column="1" Grid.Row="2" TabStripPlacement="Left">
-            <TabItem Name="TabProjects">               
+            <TabItem Name="TabProjects">                
                 <TabItem.Header>
                     
                     <!--<Controls:Badged Badge="{Binding }">
@@ -46,12 +54,34 @@
                     <!--<TextBlock>Проекты</TextBlock>-->
                 </TabItem.Header>
                 <TabItem.Content>
-                    <ListBox>
+                    <ListBox ItemsSource="{Binding Projects}" SelectedItem="{Binding CurrentProject}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Controls:Tile Title=""
-                                               Style="{StaticResource StandartTileStyle}"
-                                               />
+                                <Controls:Tile Title="{Binding Name}" TitleFontSize="15" VerticalTitleAlignment="Top"
+                                               Style="{StaticResource StandartTileStyle}">
+                                    <Controls:Tile.ContentTemplate>
+                                        <DataTemplate>                                            
+                                            <StackPanel>
+                                                <Label Content="{Binding OwnerUser.Name}" HorizontalAlignment="Right"/>
+                                                <!--<StackPanel Orientation="Horizontal">
+                                                    <Label Content="задч"
+                                                </StackPanel>-->
+                                                <TextBlock>
+                                                    <Run Text="{Binding TasksCount}"/>
+                                                    <Run Text=" задач"/>
+                                                </TextBlock>
+                                                <TextBlock TextAlignment="Right">
+                                                    <Run Text="В работе: "/>
+                                                    <Run Text="{Binding NotDoneTasksCount}"/>
+                                                </TextBlock>
+                                                <TextBlock TextAlignment="Right">
+                                                    <Run Text="Выполнено: "/>
+                                                    <Run Text="{Binding DoneTasksCount}"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Controls:Tile.ContentTemplate>
+                                </Controls:Tile>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                         <ListBox.ItemsPanel>
@@ -65,10 +95,10 @@
             
             <TabItem Name="TabMyTasks">
                 <TabItem.Header>
-                    <!--Задачи-->
-                    <Controls:Badged Badge="{Binding }">
+                    Задачи
+                    <!--<Controls:Badged Badge="{Binding }">
                         <Label>Задачи</Label>
-                    </Controls:Badged>
+                    </Controls:Badged>-->
                 </TabItem.Header>
                 <TabItem.Content>
                     <Grid>

@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DbModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="MyTasks">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="ResponsibleUserID" Type="int" />
+          <Property Name="CurrentPriority" Type="int" Nullable="false" />
+          <Property Name="TimeStart" Type="datetime" Nullable="false" />
+          <Property Name="TimeStop" Type="datetime" Nullable="false" />
+          <Property Name="Prognosis" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="IsDone" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MyTaskUsers">
+          <Key>
+            <PropertyRef Name="MyTask_ID" />
+            <PropertyRef Name="User_UserID" />
+          </Key>
+          <Property Name="MyTask_ID" Type="int" Nullable="false" />
+          <Property Name="User_UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="OwnerUserID" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_dbo_MyTasks_dbo_Projects_ProjectID">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="0..1" />
+          <End Role="MyTasks" Type="Self.MyTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyTasks">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MyTasks_dbo_Users_ResponsibleUserID">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="MyTasks" Type="Self.MyTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyTasks">
+              <PropertyRef Name="ResponsibleUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MyTaskUsers_dbo_MyTasks_MyTask_ID">
+          <End Role="MyTasks" Type="Self.MyTasks" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MyTaskUsers" Type="Self.MyTaskUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MyTasks">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyTaskUsers">
+              <PropertyRef Name="MyTask_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MyTaskUsers_dbo_Users_User_UserID">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MyTaskUsers" Type="Self.MyTaskUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyTaskUsers">
+              <PropertyRef Name="User_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Projects_dbo_Users_OwnerUserID">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="OwnerUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DbModelContainer">
+          <EntitySet Name="MyTasks" EntityType="Self.MyTasks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MyTaskUsers" EntityType="Self.MyTaskUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_MyTasks_dbo_Projects_ProjectID" Association="Self.FK_dbo_MyTasks_dbo_Projects_ProjectID">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="MyTasks" EntitySet="MyTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MyTasks_dbo_Users_ResponsibleUserID" Association="Self.FK_dbo_MyTasks_dbo_Users_ResponsibleUserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="MyTasks" EntitySet="MyTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MyTaskUsers_dbo_MyTasks_MyTask_ID" Association="Self.FK_dbo_MyTaskUsers_dbo_MyTasks_MyTask_ID">
+            <End Role="MyTasks" EntitySet="MyTasks" />
+            <End Role="MyTaskUsers" EntitySet="MyTaskUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MyTaskUsers_dbo_Users_User_UserID" Association="Self.FK_dbo_MyTaskUsers_dbo_Users_User_UserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="MyTaskUsers" EntitySet="MyTaskUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Projects_dbo_Users_OwnerUserID" Association="Self.FK_dbo_Projects_dbo_Users_OwnerUserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="MyTask">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="ResponsibleUserID" Type="Int32" />
+          <Property Name="CurrentPriority" Type="Int32" Nullable="false" />
+          <Property Name="TimeStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TimeStop" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Prognosis" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDone" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="Self.FK_dbo_MyTasks_dbo_Projects_ProjectID" FromRole="MyTasks" ToRole="Projects" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_MyTasks_dbo_Users_ResponsibleUserID" FromRole="MyTasks" ToRole="Users" />
+          <NavigationProperty Name="Users" Relationship="Self.MyTaskUsers" FromRole="MyTasks" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerUserID" Type="Int32" />
+          <NavigationProperty Name="MyTasks" Relationship="Self.FK_dbo_MyTasks_dbo_Projects_ProjectID" FromRole="Projects" ToRole="MyTasks" />
+          <NavigationProperty Name="User" Relationship="Self.FK_dbo_Projects_dbo_Users_OwnerUserID" FromRole="Projects" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MyTasks" Relationship="Self.FK_dbo_MyTasks_dbo_Users_ResponsibleUserID" FromRole="Users" ToRole="MyTasks" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_dbo_Projects_dbo_Users_OwnerUserID" FromRole="Users" ToRole="Projects" />
+          <NavigationProperty Name="MyTasks1" Relationship="Self.MyTaskUsers" FromRole="Users" ToRole="MyTasks" />
+        </EntityType>
+        <Association Name="FK_dbo_MyTasks_dbo_Projects_ProjectID">
+          <End Role="Projects" Type="Self.Project" Multiplicity="0..1" />
+          <End Role="MyTasks" Type="Self.MyTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyTasks">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MyTasks_dbo_Users_ResponsibleUserID">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="MyTasks" Type="Self.MyTask" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyTasks">
+              <PropertyRef Name="ResponsibleUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Projects_dbo_Users_OwnerUserID">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Projects" Type="Self.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="OwnerUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MyTaskUsers">
+          <End Role="MyTasks" Type="Self.MyTask" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MyTasks" EntityType="Self.MyTask" />
+          <EntitySet Name="Projects" EntityType="Self.Project" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_dbo_MyTasks_dbo_Projects_ProjectID" Association="Self.FK_dbo_MyTasks_dbo_Projects_ProjectID">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="MyTasks" EntitySet="MyTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MyTasks_dbo_Users_ResponsibleUserID" Association="Self.FK_dbo_MyTasks_dbo_Users_ResponsibleUserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="MyTasks" EntitySet="MyTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Projects_dbo_Users_OwnerUserID" Association="Self.FK_dbo_Projects_dbo_Users_OwnerUserID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="MyTaskUsers" Association="Self.MyTaskUsers">
+            <End Role="MyTasks" EntitySet="MyTasks" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DbModelContainer" CdmEntityContainer="DbEntities">
+          <EntitySetMapping Name="MyTasks">
+            <EntityTypeMapping TypeName="DbModel.MyTask">
+              <MappingFragment StoreEntitySet="MyTasks">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ResponsibleUserID" ColumnName="ResponsibleUserID" />
+                <ScalarProperty Name="CurrentPriority" ColumnName="CurrentPriority" />
+                <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
+                <ScalarProperty Name="TimeStop" ColumnName="TimeStop" />
+                <ScalarProperty Name="Prognosis" ColumnName="Prognosis" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsDone" ColumnName="IsDone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="DbModel.Project">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OwnerUserID" ColumnName="OwnerUserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DbModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="MyTaskUsers" TypeName="DbModel.MyTaskUsers" StoreEntitySet="MyTaskUsers">
+            <EndProperty Name="MyTasks">
+              <ScalarProperty Name="ID" ColumnName="MyTask_ID" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="UserID" ColumnName="User_UserID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -21,13 +21,13 @@ namespace TaskManager
        
         public App()
         {
-            ModelContext context = new ModelContext();
-            var users = context.Users;
+            //ModelContext context = new ModelContext();
+            //var users = context.Users;
 
-            foreach (var r in users)
-            {
-                var user = r;
-            }
+            //foreach (var r in users)
+            //{
+            //    var user = r;
+            //}
         }
     }
 }
