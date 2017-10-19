@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace server
 {
     [ServiceContract]
-    interface IGeneral
+    public interface IGeneral
     {
         [OperationContract]
         BusinessUser Login(string email, string password);

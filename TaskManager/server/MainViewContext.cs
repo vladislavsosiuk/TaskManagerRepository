@@ -19,61 +19,61 @@ namespace server
             Context = context;
         }
         #region methods
-        //public List<BusinessProject> GetAllProjects()
-        //{
+        public List<BusinessProject> GetAllProjects()
+        {
 
-        //    var allProjects = Context.Projects.Select(p => new BusinessProject
-        //    {
-        //        ID = p.ID,
-        //        Name = p.Name,
-        //        OwnerUser = new BusinessUser
-        //        {
-        //            Email = p.OwnerUser.Email,
-        //            Name = p.OwnerUser.Name,
-        //            UserID = p.OwnerUser.UserID,
-        //        },
-        //        Tasks = p.Tasks.Select(t => new BussinessMyTask
-        //        {
-        //            CurrentPriority = t.CurrentPriority,
-        //            Description = t.Description,
-        //            ID = t.ID,
-        //            IsDone = t.IsDone,
-        //            Name = t.Name,
-        //            Prognosis = t.Prognosis,
-        //            ResponsibleUser = new BusinessUser
-        //            {
-        //                Email = t.ResponsibleUser.Email,
-        //                Name = t.ResponsibleUser.Name,
-        //                UserID = t.ResponsibleUser.UserID,
-        //            },
-        //            TimeStart = t.TimeStart,
-        //            TimeStop = t.TimeStop,
-        //        }).ToList(),
-        //    });
-        //    return allProjects.ToList();
-        //}
+            var allProjects = Context.Projects.Select(p => new BusinessProject
+            {
+                ID = p.ID,
+                Name = p.Name,
+                OwnerUser = new BusinessUser
+                {
+                    Email = p.OwnerUser.Email,
+                    Name = p.OwnerUser.Name,
+                    UserID = p.OwnerUser.UserID,
+                },
+                Tasks = p.Tasks.Select(t => new BussinessMyTask
+                {
+                    CurrentPriority = t.CurrentPriority,
+                    Description = t.Description,
+                    ID = t.ID,
+                    IsDone = t.IsDone,
+                    Name = t.Name,
+                    Prognosis = t.Prognosis,
+                    ResponsibleUser = new BusinessUser
+                    {
+                        Email = t.ResponsibleUser.Email,
+                        Name = t.ResponsibleUser.Name,
+                        UserID = t.ResponsibleUser.UserID,
+                    },
+                    TimeStart = t.TimeStart,
+                    TimeStop = t.TimeStop,
+                }).ToList(),
+            });
+            return allProjects.ToList();
+        }
 
-        //public List<BussinessMyTask> GetAllTasks()
-        //{
-        //    var allTasks = Context.MyTasks.Select(t => new BussinessMyTask
-        //    {
-        //        CurrentPriority = t.CurrentPriority,
-        //        Description = t.Description,
-        //        ID = t.ID,
-        //        IsDone = t.IsDone,
-        //        Name = t.Name,
-        //        Prognosis = t.Prognosis,
-        //        ResponsibleUser = new BusinessUser
-        //        {
-        //            Email = t.ResponsibleUser.Email,
-        //            Name = t.ResponsibleUser.Name,
-        //            UserID = t.ResponsibleUser.UserID,
-        //        },
-        //        TimeStart = t.TimeStart,
-        //        TimeStop = t.TimeStop,
-        //    }).ToList();
-        // return allTasks.ToList();
-        //}
+        public List<BussinessMyTask> GetAllTasks()
+        {
+            var allTasks = Context.MyTasks.Select(t => new BussinessMyTask
+            {
+                CurrentPriority = t.CurrentPriority,
+                Description = t.Description,
+                ID = t.ID,
+                IsDone = t.IsDone,
+                Name = t.Name,
+                Prognosis = t.Prognosis,
+                ResponsibleUser = new BusinessUser
+                {
+                    Email = t.ResponsibleUser.Email,
+                    Name = t.ResponsibleUser.Name,
+                    UserID = t.ResponsibleUser.UserID,
+                },
+                TimeStart = t.TimeStart,
+                TimeStop = t.TimeStop,
+            }).ToList();
+            return allTasks.ToList();
+        }
         #endregion
         public List<BusinessUser> GetAllUsers()
         {

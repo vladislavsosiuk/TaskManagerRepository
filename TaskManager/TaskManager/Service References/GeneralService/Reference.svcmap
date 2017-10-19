@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0170d863-389c-4d69-8ee3-4a0c53eef562" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="net.tcp://localhost:30000/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="73d07a82-19c4-4002-8044-2a1cc65ccb73" SourceId="1" SourceUrl="net.tcp://localhost:30000/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="2ee843cc-508d-48db-bb46-960737820232" SourceId="1" SourceUrl="net.tcp://localhost:30000/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="87c03d76-9067-4ee2-8826-399cf43052d0" SourceId="1" SourceUrl="net.tcp://localhost:30000/mex" />
+    <MetadataFile FileName="server.BusinessLayer.xsd" MetadataType="Schema" ID="3cf21808-3da7-456d-a4ba-2ceae97fecfd" SourceId="1" SourceUrl="net.tcp://localhost:30000/mex" />
+    <MetadataFile FileName="server.xsd" MetadataType="Schema" ID="1d3abdc1-a5be-410e-9e52-3d6cf7b967a0" SourceId="1" SourceUrl="net.tcp://localhost:30000/mex" />
+    <MetadataFile FileName="DataLair.xsd" MetadataType="Schema" ID="3df538f4-c622-4f0b-9be1-15b911b096d8" SourceId="1" SourceUrl="net.tcp://localhost:30000/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

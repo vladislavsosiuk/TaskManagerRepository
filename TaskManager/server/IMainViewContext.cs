@@ -12,5 +12,7 @@ namespace server
         List<BusinessUser> GetAllUsers();
         List<BusinessProject> GetProjectsByUserID(int userID);
         List<BussinessMyTask> GetTasksByUserID(int userID);
+        List<BusinessProject> GetAllProjects();
+        List<BussinessMyTask> GetAllTasks();
     }
 }

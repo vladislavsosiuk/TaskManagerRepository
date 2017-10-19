@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/server.BusinessLayer" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/server.BusinessLayer" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/server" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/DataLair" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="BusinessUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/server" minOccurs="0" name="Result" nillable="true" type="q1:Result" />
+      <xs:element minOccurs="0" name="Tasks" nillable="true" type="tns:ArrayOfBussinessMyTask" />
+      <xs:element minOccurs="0" name="UserID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BusinessUser" nillable="true" type="tns:BusinessUser" />
+  <xs:complexType name="ArrayOfBussinessMyTask">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BussinessMyTask" nillable="true" type="tns:BussinessMyTask" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBussinessMyTask" nillable="true" type="tns:ArrayOfBussinessMyTask" />
+  <xs:complexType name="BussinessMyTask">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DataLair" minOccurs="0" name="CurrentPriority" type="q2:Priority" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IsDone" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Observers" nillable="true" type="tns:ArrayOfBusinessUser" />
+      <xs:element minOccurs="0" name="Prognosis" type="ser:duration" />
+      <xs:element minOccurs="0" name="Project" nillable="true" type="tns:BusinessProject" />
+      <xs:element minOccurs="0" name="ResponsibleUser" nillable="true" type="tns:BusinessUser" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/server" minOccurs="0" name="Result" nillable="true" type="q3:Result" />
+      <xs:element minOccurs="0" name="TimeStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TimeStop" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BussinessMyTask" nillable="true" type="tns:BussinessMyTask" />
+  <xs:complexType name="ArrayOfBusinessUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BusinessUser" nillable="true" type="tns:BusinessUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBusinessUser" nillable="true" type="tns:ArrayOfBusinessUser" />
+  <xs:complexType name="BusinessProject">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerUser" nillable="true" type="tns:BusinessUser" />
+      <xs:element minOccurs="0" name="Tasks" nillable="true" type="tns:ArrayOfBussinessMyTask" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BusinessProject" nillable="true" type="tns:BusinessProject" />
+</xs:schema>

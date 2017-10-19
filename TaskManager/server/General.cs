@@ -102,9 +102,10 @@ namespace server
       
         public Result RemindPassword(string email)
         {
-            if(Checking.CheckEmailAddress(email))
+            if(!Checking.CheckEmailAddress(email))
                 return new Result(-1, "Email does not match the requirements!");
-            var user = context.Users.Where(u => u.Email == email).FirstOrDefault();
+            var users = context.Users.Where(u => u.Email == email);
+            var user = users.FirstOrDefault();
             if(user!=null)
             {
                 string pass = user.Password;

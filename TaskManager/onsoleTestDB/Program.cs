@@ -12,10 +12,10 @@ namespace ConsoleTestDB
     {
         static void Main(string[] args)
         {
-            //ModelContext Context = new ModelContext();
-            DbEntities Context = new DbEntities();
+            ModelContext Context = new ModelContext();
+           // DbEntities Context = new DbEntities();
             var users = Context.Users.ToList();
-            foreach(DataLayerFromDB.User user in users)
+            foreach(var user in users)
             {
                 Console.WriteLine($" {user.Name} {user.Email}");
             }

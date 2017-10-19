@@ -28,7 +28,7 @@ namespace TaskManager.View
         {
             InitializeComponent();
 
-            DataContext = new RemindPasswordViewModel(loginView);
+            DataContext = new RemindPasswordViewModel(this);
 
             LoginView = loginView;
             
