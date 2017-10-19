@@ -3,6 +3,7 @@ using server;
 using server.BusinessLayer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -32,12 +33,12 @@ namespace TaskManager
         #endregion
         #region Properties
         public IMainViewContext Context { get; set; }
-        public List<BussinessMyTask> TasksIsDone
+        public ObservableCollection<BussinessMyTask> TasksIsDone
         {
             get
             {
                 //return tasks;
-                return Context.GetTasksByUserID(CurrentUser.UserID).Where(i => i.IsDone).ToList();
+                return new ObservableCollection<BussinessMyTask>(Context.GetTasksByUserID(CurrentUser.UserID).Where(i => i.IsDone));
             }
             set
             {
@@ -45,12 +46,12 @@ namespace TaskManager
                 OnPropertyChanged("tasks");
             }
         }
-        public List<BussinessMyTask> TasksInWork
+        public ObservableCollection<BussinessMyTask> TasksInWork
         {
             get
             {
                 //return tasks;
-                return Context.GetTasksByUserID(CurrentUser.UserID).Where(i => !i.IsDone).ToList();
+                return new ObservableCollection<BussinessMyTask>(Context.GetTasksByUserID(CurrentUser.UserID).Where(i => !i.IsDone));
             }
             set
             {
@@ -58,12 +59,12 @@ namespace TaskManager
                 OnPropertyChanged("tasks");
             }
         }
-        public List<BusinessProject> Projects
+        public ObservableCollection<BusinessProject> Projects
         {
             get
             {
                 //return projects;
-                return Context.GetProjectsByUserID(CurrentUser.UserID);
+                return new ObservableCollection<BusinessProject>(Context.GetProjectsByUserID(CurrentUser.UserID));
             }
             set
             {
@@ -71,12 +72,12 @@ namespace TaskManager
                 OnPropertyChanged("Projects");
             }
         }
-        public List<BusinessUser> Users
+        public ObservableCollection<BusinessUser> Users
         {
             get
             {
                 //return users;
-                return Context.GetAllUsers();
+                return new ObservableCollection<BusinessUser>(Context.GetAllUsers());
             }
             set
             {
@@ -144,13 +145,13 @@ namespace TaskManager
                 OnPropertyChanged("CurrentUser");
             }
         }
-        //public int TaskCount
-        //{
-        //    get
-        //    {
-        //        return Tasks.Count;
-        //    }
-        //}
+        public int TasksCount
+        {
+            get
+            {
+                return DoneTasksCount+NotDoneTasksCount;
+            }
+        }
         public int DoneTasksCount
         {
             get

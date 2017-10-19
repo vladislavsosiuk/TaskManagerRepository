@@ -61,7 +61,7 @@
                                     <Controls:Tile.ContentTemplate>
                                         <DataTemplate>                                            
                                             <StackPanel>
-                                                <Label Content="{Binding OwnerUser.Name}" HorizontalAlignment="Right"/>
+                                                <Label Content="{Binding OwnerUser}" HorizontalAlignment="Right"/>
                                                 <!--<StackPanel Orientation="Horizontal">
                                                     <Label Content="задч"
                                                 </StackPanel>-->

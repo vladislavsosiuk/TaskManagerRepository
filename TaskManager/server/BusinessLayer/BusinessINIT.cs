@@ -1,6 +1,7 @@
 ﻿using DataLair;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 
@@ -129,10 +130,32 @@ namespace server.BusinessLayer
                 Prognosis = new TimeSpan(2, 0, 0),
                 IsDone = false
             };
+            Tasks.AddRange(new BussinessMyTask[] { t1, t2, t3, t4, t5, t6, t7 });
+            for(int i = 0; i < Tasks.Count; i++)
+            {
+                Tasks[i].ID = i;
+            }
+                        
+            u2.Tasks = new List<BussinessMyTask>() { t2, t6};
+            u3.Tasks = new List<BussinessMyTask>() { t3 };
+            u4.Tasks = new List<BussinessMyTask>() { t1};
+            u5.Tasks = new List<BussinessMyTask>() { t4 };
+            u6.Tasks = new List<BussinessMyTask>() { t7 };
+            u8.Tasks = new List<BussinessMyTask>() { t5 };
+
+            proj.Tasks.AddRange(new BussinessMyTask[]{ t1, t2, t3});
+            proj1.Tasks.AddRange(new BussinessMyTask[] { t4, t5, t6, t7 });
 
             Users.AddRange(new BusinessUser[] { u1, u2, u3, u4, u5, u6, u7, u8 });
-            Tasks.AddRange(new BussinessMyTask[] { t1, t2, t3, t4, t5, t6, t7 });
+            for(int i = 0; i < Users.Count; i++)
+            {
+                Users[i].UserID = i;
+            }
             Projects.AddRange(new BusinessProject[] { proj, proj1 });
+            for (int i = 0; i < Projects.Count; i++)
+            {
+                Projects[i].ID = i;
+            }
         }
 
         public List<BusinessUser> GetAllUsers()
@@ -142,7 +165,7 @@ namespace server.BusinessLayer
 
         public List<BusinessProject> GetProjectsByUserID(int userID)
         {
-            return Projects.Where(i => i.ID == userID).ToList();
+            return Projects.Where(p => p.OwnerUser.UserID == userID).ToList();
         }
 
         public List<BussinessMyTask> GetTasksByUserID(int userID)

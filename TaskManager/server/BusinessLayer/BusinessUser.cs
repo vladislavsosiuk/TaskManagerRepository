@@ -14,5 +14,10 @@ namespace server.BusinessLayer
         public string Password { get; set; }
         public List<BussinessMyTask> Tasks { get; set; }
         public Result Result { get; set; }
+
+        public override string ToString()
+        {
+            return $"{UserID} {Name} {Email}";
+        }
     }
 }
