@@ -19,26 +19,38 @@ namespace TaskManager
         public MainViewModel(IMainViewContext context)
         {
             Context = context;
+            CurrentUser = Users[0];
         }
         #region Fields
         //List<BussinessMyTask> tasks;
         //List<BusinessProject> projects;
         //List<BusinessUser> users;
-        BussinessMyTask currentTask;
+        BussinessMyTask currentTaskDone;
+        BussinessMyTask currentTaskInWork;
         BusinessProject currentProject;
         BusinessUser currentUser;
         #endregion
         #region Properties
         public IMainViewContext Context { get; set; }
-        public List<BussinessMyTask> Tasks
+        public List<BussinessMyTask> TasksIsDone
         {
             get
             {
                 //return tasks;
-                if (string.IsNullOrEmpty(CurrentUser.Name))
-                    return Context.GetAllTasks();
-                else
-                    return Context.GetTasksByUserID(CurrentUser.UserID);
+                return Context.GetTasksByUserID(CurrentUser.UserID).Where(i => i.IsDone).ToList();
+            }
+            set
+            {
+                //tasks = value;
+                OnPropertyChanged("tasks");
+            }
+        }
+        public List<BussinessMyTask> TasksInWork
+        {
+            get
+            {
+                //return tasks;
+                return Context.GetTasksByUserID(CurrentUser.UserID).Where(i => !i.IsDone).ToList();
             }
             set
             {
@@ -51,10 +63,7 @@ namespace TaskManager
             get
             {
                 //return projects;
-                if (string.IsNullOrEmpty(CurrentUser.Name))
-                    return Context.GetAllProjects();
-                else
-                    return Context.GetProjectsByUserID(CurrentUser.UserID);
+                return Context.GetProjectsByUserID(CurrentUser.UserID);
             }
             set
             {
@@ -75,16 +84,37 @@ namespace TaskManager
                 OnPropertyChanged("Users");
             }
         }
-        public BussinessMyTask CurrentTask
+        public BussinessMyTask CurrentTaskInWork
         {
             get
             {
-                return currentTask;
+                return currentTaskInWork;
             }
             set
             {
-                currentTask = value;
-                OnPropertyChanged("CurrentTask");
+                currentTaskInWork = value;
+                OnPropertyChanged("CurrentTaskInWork");
+            }
+        }
+        public string CurrentTaskInWorkTimeLeft
+        {
+            get
+            {
+                string res = (CurrentTaskInWork.TimeStop - CurrentTaskInWork.TimeStart).TotalHours.ToString();
+                res += " часов до сдачи";
+                return res;
+            }
+        }
+        public BussinessMyTask CurrentTaskDone
+        {
+            get
+            {
+                return currentTaskDone;
+            }
+            set
+            {
+                currentTaskDone = value;
+                OnPropertyChanged("CurrentTaskDone");
             }
         }
         public BusinessProject CurrentProject
@@ -103,7 +133,10 @@ namespace TaskManager
         {
             get
             {
-                return currentUser;
+                if (!string.IsNullOrEmpty(currentUser.Name))
+                    return currentUser;
+                else
+                    return Users[0];
             }
             set
             {
@@ -111,25 +144,25 @@ namespace TaskManager
                 OnPropertyChanged("CurrentUser");
             }
         }
-        public int TaskCount
-        {
-            get
-            {
-                return Tasks.Count;
-            }
-        }
+        //public int TaskCount
+        //{
+        //    get
+        //    {
+        //        return Tasks.Count;
+        //    }
+        //}
         public int DoneTasksCount
         {
             get
             {
-                return Tasks.Select(t => t.IsDone).Count();
+                return TasksIsDone.Count();
             }
         }
         public int NotDoneTasksCount
         {
             get
             {
-                return Tasks.Select(t => !t.IsDone).Count();
+                return TasksInWork.Count();
             }
         }
         #endregion

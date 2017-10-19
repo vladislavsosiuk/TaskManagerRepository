@@ -7,5 +7,28 @@
         <Setter Property="Height" Value="150"/>
         <Setter Property="TitleFontSize" Value="15"/>
         <Setter Property="Background" Value="MediumPurple"/>
+        <Setter Property="TitleFontSize" Value="15"/>
+        <Setter Property="VerticalTitleAlignment" Value="Top"/>
+    </Style>
+    <Style x:Key="StandartTileTaskStyle" TargetType="Controls:Tile">
+        <Setter Property="Width" Value="{Binding ElementName=TasksInWorkListBox, Path=Width}"/>
+        <Setter Property="Height" Value="150"/>
+        <Setter Property="TitleFontSize" Value="15"/>
+        <Setter Property="Background" Value="LightBlue"/>
+        <Setter Property="TitleFontSize" Value="15"/>
+        <Setter Property="VerticalTitleAlignment" Value="Top"/>
+    </Style>
+    <Style x:Key="TileTaskIsDoneStyle" TargetType="Controls:Tile">
+        <Setter Property="Width" Value="{Binding ElementName=TasksInWorkListBox, Path=Width}"/>
+        <Setter Property="Height" Value="150"/>
+        <Setter Property="TitleFontSize" Value="15"/>
+        <Setter Property="Background" Value="LightSeaGreen"/>
+        <Setter Property="TitleFontSize" Value="15"/>
+        <Setter Property="VerticalTitleAlignment" Value="Top"/>
+    </Style>
+    <Style x:Key="HeaderLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="Verdana"/>
+        <Setter Property="FontSize" Value="17"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style>
 </ResourceDictionary>

@@ -1,5 +1,4 @@
 ﻿using DataLair;
-using DataLayerFromDB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +11,10 @@ namespace ConsoleTestDB
     {
         static void Main(string[] args)
         {
-            //ModelContext Context = new ModelContext();
-            DbEntities Context = new DbEntities();
+            ModelContext Context = new ModelContext();
+            
             var users = Context.Users.ToList();
-            foreach(DataLayerFromDB.User user in users)
+            foreach(User user in users)
             {
                 Console.WriteLine($" {user.Name} {user.Email}");
             }
