@@ -18,6 +18,7 @@ namespace server
         {
             Context = context;
         }
+        #region methods
         public List<BusinessProject> GetAllProjects()
         {
 
@@ -71,9 +72,9 @@ namespace server
                 TimeStart = t.TimeStart,
                 TimeStop = t.TimeStop,
             }).ToList();
-         return allTasks.ToList();
+            return allTasks.ToList();
         }
-
+        #endregion
         public List<BusinessUser> GetAllUsers()
         {
             var allUsers = Context.Users.Select(u => new BusinessUser
@@ -121,8 +122,8 @@ namespace server
         }
 
         public List<BussinessMyTask> GetTasksByUserID(int userID)
-        {
-            var TasksById = Context.MyTasks.Where(t=>t.ResponsibleUserID== userID).Select(t => new BussinessMyTask
+        {     
+            var TasksById = Context.MyTasks.Where(t=>t.UsersThatWorksOnThatTask.Any(u=>u.UserID==userID)).Select(t => new BussinessMyTask
             {
                 CurrentPriority = t.CurrentPriority,
                 Description = t.Description,
