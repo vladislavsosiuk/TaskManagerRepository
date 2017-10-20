@@ -67,33 +67,33 @@ namespace server
             
             if(user!=null)
             {
-               //var tasks= user.Tasks.Select(t => new BussinessMyTask
-               // {
-               //     CurrentPriority = t.CurrentPriority,
-               //     Description = t.Description,
-               //     ID = t.ID,
-               //     Name = t.Name,
-               //     Prognosis = t.Prognosis,
-               //     TimeStart = t.TimeStart,
-               //     TimeStop = t.TimeStop,
-               //     Project = context.Projects.Where(p=>p.ID==t.ProjectID).Select(pp=>new BusinessProject
-               //     {
-               //         ID = pp.ID,
-               //         Name=pp.Name,
-               //         OwnerUser = context.Users.Where(u=>u.UserID== pp.OwnerUser.UserID).Select(uu=>new BusinessUser
-               //         {
-               //             Email=uu.Email,
-               //             Name=uu.Name,
-               //             UserID=uu.UserID,
-               //         }).First(),                        
-               //     }).FirstOrDefault(),
-               //     ResponsibleUser = context.Users.Where(u=>u.UserID==t.ResponsibleUserID).Select(su=>new BusinessUser
-               //     {
-               //         Email=su.Email,
-               //         Name = su.Name,
-               //         UserID = su.UserID,
-               //     }).FirstOrDefault(),
-               // }).ToList();   
+                //var tasks = user.Tasks.Select(t => new BussinessMyTask
+                //{
+                //    CurrentPriority = t.CurrentPriority,
+                //    Description = t.Description,
+                //    ID = t.ID,
+                //    Name = t.Name,
+                //    Prognosis = t.Prognosis,
+                //    TimeStart = t.TimeStart,
+                //    TimeStop = t.TimeStop,
+                //    Project = context.Projects.Where(p => p.ID == t.ProjectID).Select(pp => new BusinessProject
+                //    {
+                //        ID = pp.ID,
+                //        Name = pp.Name,
+                //        OwnerUser = context.Users.Where(u => u.UserID == pp.OwnerUser.UserID).Select(uu => new BusinessUser
+                //        {
+                //            Email = uu.Email,
+                //            Name = uu.Name,
+                //            UserID = uu.UserID,
+                //        }).First(),
+                //    }).FirstOrDefault(),
+                //    ResponsibleUser = context.Users.Where(u => u.UserID == t.ResponsibleUserID).Select(su => new BusinessUser
+                //    {
+                //        Email = su.Email,
+                //        Name = su.Name,
+                //        UserID = su.UserID,
+                //    }).FirstOrDefault(),
+                //}).ToList();
                 //return tasks;
             }
             return null;
@@ -102,9 +102,10 @@ namespace server
       
         public Result RemindPassword(string email)
         {
-            if(Checking.CheckEmailAddress(email))
+            if(!Checking.CheckEmailAddress(email))
                 return new Result(-1, "Email does not match the requirements!");
-            var user = context.Users.Where(u => u.Email == email).FirstOrDefault();
+            var users = context.Users.Where(u => u.Email == email);
+            var user = users.FirstOrDefault();
             if(user!=null)
             {
                 string pass = user.Password;

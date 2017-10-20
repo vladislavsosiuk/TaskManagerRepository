@@ -22,7 +22,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Button Style="{DynamicResource SquareButtonStyle}" Margin="2" Content="Войти" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=passwordBox}"></Button>
-                <Button Style="{DynamicResource SquareButtonStyle}" Content="Напомнить пароль" Command="{Binding PasswordCommand}"
+                    <Button Style="{DynamicResource SquareButtonStyle}" Content="Напомнить пароль" Command="{Binding ForgotPasswordCommand}"
                          Grid.Column="1" Margin="2" />
             </Grid>
             <Button Style="{DynamicResource SquareButtonStyle}" Content="зарегистрироваться" Command="{Binding SignUpCommand}" Margin="2"/>

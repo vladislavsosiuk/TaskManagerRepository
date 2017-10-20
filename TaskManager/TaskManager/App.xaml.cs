@@ -16,11 +16,13 @@ namespace TaskManager
     /// </summary>
     public partial class App : Application
     {
-        public static General GeneralService { get; set; } = new General();
+        public static GeneralService.GeneralClient GeneralService { get; set; }
         public static BusinessUser CurrentUser { get; set; }
        
         public App()
         {
+            App.GeneralService = new GeneralService.GeneralClient();
+
             //ModelContext context = new ModelContext();
             //var users = context.Users;
 

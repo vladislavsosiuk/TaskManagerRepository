@@ -11,6 +11,7 @@ using MahApps.Metro.Controls.Dialogs;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using TaskManager.View;
 
 namespace TaskManager.ViewModel
 {
@@ -30,13 +31,13 @@ namespace TaskManager.ViewModel
             }
         }
 
-        public RemindPasswordViewModel(LoginView view)
+        public RemindPasswordViewModel(RemindPasswordPage view)
         {
             CurrentPage = view;
         }
         Command forgotPasswordCommand;
         bool isLoading;
-        public LoginView CurrentPage
+        public RemindPasswordPage CurrentPage
         {
             get; set;
         }

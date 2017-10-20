@@ -37,7 +37,7 @@ namespace server.BusinessLayer
         public string Description { get; set; }
 
         public bool IsDone { get; set; }
-
+        public Result Result { get; set; }
         public BussinessMyTask()
         {
             Observers = new List<BusinessUser>();
