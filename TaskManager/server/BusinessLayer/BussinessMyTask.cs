@@ -42,5 +42,6 @@ namespace server.BusinessLayer
         {
             Observers = new List<BusinessUser>();
         }
+
     }
 }

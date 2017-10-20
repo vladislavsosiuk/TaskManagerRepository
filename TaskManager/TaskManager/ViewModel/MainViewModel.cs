@@ -3,6 +3,7 @@ using server;
 using server.BusinessLayer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -19,26 +20,25 @@ namespace TaskManager
         public MainViewModel(IMainViewContext context)
         {
             Context = context;
+            CurrentUser = Users[0];
         }
         #region Fields
         //List<BussinessMyTask> tasks;
         //List<BusinessProject> projects;
         //List<BusinessUser> users;
-        BussinessMyTask currentTask;
+        BussinessMyTask currentTaskDone;
+        BussinessMyTask currentTaskInWork;
         BusinessProject currentProject;
         BusinessUser currentUser;
         #endregion
         #region Properties
         public IMainViewContext Context { get; set; }
-        public List<BussinessMyTask> Tasks
+        public ObservableCollection<BussinessMyTask> TasksIsDone
         {
             get
             {
                 //return tasks;
-                if (string.IsNullOrEmpty(CurrentUser.Name))
-                    return Context.GetAllTasks();
-                else
-                    return Context.GetTasksByUserID(CurrentUser.UserID);
+                return new ObservableCollection<BussinessMyTask>(Context.GetTasksByUserID(CurrentUser.UserID).Where(i => i.IsDone));
             }
             set
             {
@@ -46,15 +46,25 @@ namespace TaskManager
                 OnPropertyChanged("tasks");
             }
         }
-        public List<BusinessProject> Projects
+        public ObservableCollection<BussinessMyTask> TasksInWork
+        {
+            get
+            {
+                //return tasks;
+                return new ObservableCollection<BussinessMyTask>(Context.GetTasksByUserID(CurrentUser.UserID).Where(i => !i.IsDone));
+            }
+            set
+            {
+                //tasks = value;
+                OnPropertyChanged("tasks");
+            }
+        }
+        public ObservableCollection<BusinessProject> Projects
         {
             get
             {
                 //return projects;
-                if (string.IsNullOrEmpty(CurrentUser.Name))
-                    return Context.GetAllProjects();
-                else
-                    return Context.GetProjectsByUserID(CurrentUser.UserID);
+                return new ObservableCollection<BusinessProject>(Context.GetProjectsByUserID(CurrentUser.UserID));
             }
             set
             {
@@ -62,12 +72,12 @@ namespace TaskManager
                 OnPropertyChanged("Projects");
             }
         }
-        public List<BusinessUser> Users
+        public ObservableCollection<BusinessUser> Users
         {
             get
             {
                 //return users;
-                return Context.GetAllUsers();
+                return new ObservableCollection<BusinessUser>(Context.GetAllUsers());
             }
             set
             {
@@ -75,16 +85,37 @@ namespace TaskManager
                 OnPropertyChanged("Users");
             }
         }
-        public BussinessMyTask CurrentTask
+        public BussinessMyTask CurrentTaskInWork
         {
             get
             {
-                return currentTask;
+                return currentTaskInWork;
             }
             set
             {
-                currentTask = value;
-                OnPropertyChanged("CurrentTask");
+                currentTaskInWork = value;
+                OnPropertyChanged("CurrentTaskInWork");
+            }
+        }
+        public string CurrentTaskInWorkTimeLeft
+        {
+            get
+            {
+                string res = (CurrentTaskInWork.TimeStop - CurrentTaskInWork.TimeStart).TotalHours.ToString();
+                res += " часов до сдачи";
+                return res;
+            }
+        }
+        public BussinessMyTask CurrentTaskDone
+        {
+            get
+            {
+                return currentTaskDone;
+            }
+            set
+            {
+                currentTaskDone = value;
+                OnPropertyChanged("CurrentTaskDone");
             }
         }
         public BusinessProject CurrentProject
@@ -103,7 +134,10 @@ namespace TaskManager
         {
             get
             {
-                return currentUser;
+                if (!string.IsNullOrEmpty(currentUser.Name))
+                    return currentUser;
+                else
+                    return Users[0];
             }
             set
             {
@@ -111,25 +145,25 @@ namespace TaskManager
                 OnPropertyChanged("CurrentUser");
             }
         }
-        public int TaskCount
+        public int TasksCount
         {
             get
             {
-                return Tasks.Count;
+                return DoneTasksCount+NotDoneTasksCount;
             }
         }
         public int DoneTasksCount
         {
             get
             {
-                return Tasks.Select(t => t.IsDone).Count();
+                return TasksIsDone.Count();
             }
         }
         public int NotDoneTasksCount
         {
             get
             {
-                return Tasks.Select(t => !t.IsDone).Count();
+                return TasksInWork.Count();
             }
         }
         #endregion

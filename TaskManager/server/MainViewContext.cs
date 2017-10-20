@@ -9,6 +9,7 @@ namespace server
 {
     public class MainViewContext : IMainViewContext
     {
+        
 
         public ModelContext Context
         {
@@ -55,6 +56,12 @@ namespace server
 
         public List<BussinessMyTask> GetAllTasks()
         {
+            throw new NotImplementedException();
+        }
+
+        public List<BusinessUser> GetAllUsers()
+        {
+            
             var allTasks = Context.MyTasks.Select(t => new BussinessMyTask
             {
                 CurrentPriority = t.CurrentPriority,
@@ -90,6 +97,12 @@ namespace server
 
         public List<BusinessProject> GetProjectsByUserID(int userID)
         {
+            throw new NotImplementedException();
+        }
+
+        public List<BussinessMyTask> GetTasksByUserID(int userID)
+        {
+            
             var ProjectsById = Context.Projects.Where(p => p.OwnerUserID == userID).Select(p => new BusinessProject
             {
                 ID = p.ID,

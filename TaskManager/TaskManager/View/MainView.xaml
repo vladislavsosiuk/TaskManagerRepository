@@ -54,15 +54,14 @@
                     <!--<TextBlock>Проекты</TextBlock>-->
                 </TabItem.Header>
                 <TabItem.Content>
-                    <ListBox ItemsSource="{Binding Projects}" SelectedItem="{Binding CurrentProject}">
+                    <ListBox ItemsSource="{Binding Projects}" SelectedItem="{Binding CurrentProject}" ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Controls:Tile Title="{Binding Name}" TitleFontSize="15" VerticalTitleAlignment="Top"
-                                               Style="{StaticResource StandartTileStyle}">
+                                <Controls:Tile Title="{Binding Name}" Style="{StaticResource StandartTileStyle}">
                                     <Controls:Tile.ContentTemplate>
                                         <DataTemplate>                                            
                                             <StackPanel>
-                                                <Label Content="{Binding OwnerUser.Name}" HorizontalAlignment="Right"/>
+                                                <Label Content="{Binding OwnerUser}" HorizontalAlignment="Right"/>
                                                 <!--<StackPanel Orientation="Horizontal">
                                                     <Label Content="задч"
                                                 </StackPanel>-->
@@ -107,31 +106,106 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
-                        <ListBox>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
+                        <StackPanel>
+                            <Label Content="Задачи в работе" Style="{StaticResource HeaderLabelStyle}"/>
+                            <ListBox Name="TasksInWorkListBox" ItemsSource="{Binding TasksInWork}" SelectedItem="{Binding CurrentTaskInWork}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Controls:Tile Title="{Binding Name}"  Style="{StaticResource StandartTileTaskStyle}">
+                                            <Controls:Tile.ContentTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Background="Gray" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock HorizontalAlignment="Left">
+                                                            <Run Text="Приоритет: "/>
+                                                            <Run Text="{}"/>
+                                                            </TextBlock>
+                                                            <TextBlock HorizontalAlignment="Right">
+                                                            <Run Text="Проект: "/>
+                                                            <Run Text="{Binding Project.Name}"/>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                        <TextBlock HorizontalAlignment="Left">
+                                                            <Run Text="Ответственное лицо: "/>
+                                                            <Run Text="{Binding ResponsibleUser.Name}"/>
+                                                        </TextBlock>
+                                                        <StackPanel Name="CurrTaskInWorkDescription" Visibility="Hidden">
+                                                            <Label Content="Суть задачи:"/>
+                                                            <TextBlock Text="{Binding Description}"/>
+                                                        </StackPanel>
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                                <ColumnDefinition/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <StackPanel>
+                                                                <Label Content="Выдано:" HorizontalAlignment="Center"/>
+                                                                <Label Content="{Binding TimeStart}" HorizontalAlignment="Center"/>
+                                                            </StackPanel>
+                                                            <StackPanel Grid.Column="1">
+                                                                <Label Content="Осталось:" HorizontalAlignment="Center"/>
+                                                                <Label Content="{Binding CurrentTaskInWorkTimeLeft}" HorizontalAlignment="Center"/>
+                                                            </StackPanel>
+                                                            <StackPanel Grid.Column="2">
+                                                                <Label Content="DeadLine:" HorizontalAlignment="Center"/>
+                                                                <Label Content="{Binding TimeStop}" HorizontalAlignment="Center"/>
+                                                            </StackPanel>
+                                                        </Grid>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </Controls:Tile.ContentTemplate>
+                                        </Controls:Tile>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                                <!--<ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel></WrapPanel>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>-->
+                            </ListBox>
+                        </StackPanel>
 
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel></WrapPanel>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                        </ListBox>
-
-                        <ListBox Grid.Column="1">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel></WrapPanel>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                        </ListBox>
+                        <StackPanel Grid.Column="1">
+                            <Label Content="Выполненные задачи" Style="{StaticResource HeaderLabelStyle}"/>
+                            <ListBox DataContext="{Binding TasksIsDone}" SelectedItem="{Binding CurrentTaskDone}" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Controls:Tile Title="{Binding Name}" Style="{StaticResource TileTaskIsDoneStyle}">
+                                            <Controls:Tile.ContentTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock HorizontalAlignment="Left">
+                                                            <Run Text="Приоритет: "/>
+                                                            <Run Text="{}"/>
+                                                            </TextBlock>
+                                                            <TextBlock HorizontalAlignment="Right">
+                                                            <Run Text="Проект: "/>
+                                                            <Run Text="{Binding Project.Name}"/>
+                                                            </TextBlock>
+                                                        </StackPanel>
+                                                        <TextBlock HorizontalAlignment="Left">
+                                                            <Run Text="Ответственное лицо: "/>
+                                                            <Run Text="{Binding ResponsibleUser.Name}"/>
+                                                        </TextBlock>
+                                                        <StackPanel Name="CurrentTaskDoneDescription" Visibility="Hidden">
+                                                            <Label Content="Суть задачи:"/>
+                                                            <TextBlock Text="{Binding Description}"/>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </Controls:Tile.ContentTemplate>
+                                        </Controls:Tile>                                        
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel></WrapPanel>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                            </ListBox>
+                        </StackPanel>
                     </Grid>
                 </TabItem.Content>
             </TabItem>

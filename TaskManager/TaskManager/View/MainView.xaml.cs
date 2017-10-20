@@ -1,5 +1,6 @@
 ﻿using MahApps.Metro.Controls;
 using server;
+using server.BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,15 @@ namespace TaskManager.View
     /// </summary>
     public partial class MainView : MetroWindow
     {
-        public MainView(IMainViewContext context)
+        //public MainView(IMainViewContext context)
+        //{
+        //    InitializeComponent();     
+        //    this.DataContext = new MainViewModel(context);
+        //}
+        public MainView()
         {
-            InitializeComponent();     
+            IMainViewContext context = new BusinessINIT();
+            InitializeComponent();
             this.DataContext = new MainViewModel(context);
         }
     }
